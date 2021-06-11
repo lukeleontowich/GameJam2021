@@ -33,7 +33,7 @@ function love.draw()
 end
 
 function love.update(dt)
-
+    gStateMachine:update(dt)
 end
 
 
