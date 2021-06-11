@@ -1,5 +1,6 @@
 -- world.lua
 -- World Lua
+--hello
 
 -- fixture_a, fixture_b, contact
 local begin_contact_callback = function(fa, fb, c)
