@@ -25,8 +25,7 @@ function StartState:render()
 end
 
 function StartState:update() 
-    if love.keypressed() and not love.keypress('escape') then
-        gStateMachine:change('play')
-        
+    if love.keyboard.wasPressed('enter') then
+        gStateMachine:change('play')    
     end
 end
