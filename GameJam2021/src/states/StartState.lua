@@ -20,12 +20,14 @@ function StartState:render()
     love.graphics.printf('Blobs', 1, VIRTUAL_HEIGHT / 2 - 40 + 1, VIRTUAL_WIDTH, 'center')
     love.graphics.setColor(1, 1, 1, 1)
     self.blueBlob:render()
-
     self.redBlob:render()
 end
 
-function StartState:update() 
-    if love.keyboard.wasPressed('enter') then
-        gStateMachine:change('play')    
+function StartState:update(dt) 
+    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+        gStateMachine:change('play', {
+            redBlob = self.redBlob,
+            blueBlob = self.blueBlob
+        })    
     end
 end
