@@ -2,7 +2,7 @@
 require 'src/Dependencies'
 
 function love.load()
-    love.window.setTitle('Untitled')
+    love.window.setTitle('Blobs')
 
     math.randomseed(os.time())
     
