@@ -28,3 +28,9 @@ function StartState:render()
     self.blueBlob:render()
     self.redBlob:render()
 end
+
+function StartState:update() 
+    if love.keyboard.keypressed() and not love.keyboard.keypress() then
+        love.event.quit()
+    end
+end
