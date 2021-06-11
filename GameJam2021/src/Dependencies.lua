@@ -13,7 +13,7 @@ require 'src/states/StartState'
 
 gFonts = {
     ['title'] = love.graphics.newFont('fonts/Title.ttf', 32),
-    ['menu'] = love.graphics.newFont('fonts/Title.ttf', 16)
+    ['menu'] = love.graphics.newFont('fonts/Title.ttf', 12)
 }
 
 gTextures = {
