@@ -13,7 +13,7 @@ require 'src/states/StartState'
 
 gFonts = {
     ['title'] = love.graphics.newFont('fonts/Title.ttf', 32),
-    ['menu'] = love.graphics.newFont('fonts/Title.ttf', 16)
+    ['menu'] = love.graphics.newFont('fonts/Title.ttf', 12)
 }
 
 gTextures = {
@@ -25,4 +25,8 @@ gTextures = {
     ['blue_blob_still'] = love.graphics.newImage('graphics/Blue_Blob_Still.png'),
     ['blue_blob_squishing'] = love.graphics.newImage('graphics/Blue_Blob_Squish_1.png'),
     ['blue_blob_squished'] = love.graphics.newImage('graphics/Blue_Blob_Squish_2.png')
+}
+
+gSounds = {
+    ['music'] = love.audio.newSource('sounds/Bubblegum.wav', 'static')
 }

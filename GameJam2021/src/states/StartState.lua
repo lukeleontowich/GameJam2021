@@ -13,16 +13,6 @@ function StartState:init()
     })
 end
 
-function StartState:render()
-    love.graphics.draw(gTextures['background'], 0, 0)
-    love.graphics.setFont(gFonts['title'])
-    love.graphics.setColor(0.1, 1.0, 0.1, 1.0)
-    love.graphics.printf('Blobs', 1, VIRTUAL_HEIGHT / 2 - 40 + 1, VIRTUAL_WIDTH, 'center')
-    love.graphics.setColor(1, 1, 1, 1)
-    self.blueBlob:render()
-    self.redBlob:render()
-end
-
 function StartState:update(dt) 
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
         gStateMachine:change('play', {
@@ -30,4 +20,16 @@ function StartState:update(dt)
             blueBlob = self.blueBlob
         })    
     end
+end
+
+function StartState:render()
+    love.graphics.draw(gTextures['background'], 0, 0)
+    love.graphics.setFont(gFonts['title'])
+    love.graphics.setColor(0.1, 1.0, 0.1, 1.0)
+    love.graphics.printf('Blobs', 1, VIRTUAL_HEIGHT / 2 - 40 + 1, VIRTUAL_WIDTH, 'center')
+    love.graphics.setFont(gFonts['menu'])
+    love.graphics.printf('Press Enter to Start', 1, VIRTUAL_HEIGHT / 2 + 1, VIRTUAL_WIDTH, 'center')
+    love.graphics.setColor(1, 1, 1, 1)
+    self.blueBlob:render()
+    self.redBlob:render()
 end
