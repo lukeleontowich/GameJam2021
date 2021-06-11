@@ -12,7 +12,8 @@ require 'src/states/PlayState'
 require 'src/states/StartState'
 
 gFonts = {
-    ['title'] = love.graphics.newFont('fonts/Title.ttf', 32)
+    ['title'] = love.graphics.newFont('fonts/Title.ttf', 32),
+    ['menu'] = love.graphices.newFont('fonts/Title.ttf', 16)
 }
 
 gTextures = {
