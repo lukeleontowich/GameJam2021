@@ -20,11 +20,13 @@ function StartState:render()
     love.graphics.printf('Blobs', 1, VIRTUAL_HEIGHT / 2 - 40 + 1, VIRTUAL_WIDTH, 'center')
     love.graphics.setColor(1, 1, 1, 1)
     self.blueBlob:render()
+
     self.redBlob:render()
 end
 
 function StartState:update() 
-    if love.keyboard.keypressed() and not love.keyboard.keypress() then
-        love.event.quit()
+    if love.keypressed() and not love.keypress('escape') then
+        gStateMachine:change('play')
+        
     end
 end
