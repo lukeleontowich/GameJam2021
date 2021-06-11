@@ -1,8 +1,22 @@
 --  main.lua
 
+
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 600
+
+VIRTUAL_WIDTH = 256
+VIRTUAL_HEIGHT = 144
+
+love.load = function() 
+    --  Will make resizable later
+    --love.window.setMode(WINDOW_WIDTH, WINDOW_HEIGHT, {resizable = false})
+
+    love.window.setTitle("Luke and Jenna Game")
+end
+
 local world = require("world")
-local entities = require("entities")
-local state = require("states")
+--local entities = require("entities")
+--local state = require("state")
 local input = require("input")
 
 love.focus = function(focus)
@@ -19,8 +33,5 @@ love.update = function(dt)
 end
 
 love.draw = function()
-    for _, entity in ipairs(entities) do
-        if entity.draw then entity:draw()
-        end
-    end
+
 end
