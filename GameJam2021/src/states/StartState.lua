@@ -9,27 +9,15 @@ local menu_states = {'start', 'how_to_play', 'main'}
 
 
 function StartState:render()
-    love.graphics.draw(
-        gTextures['intro'], 
-        0, 0, 0, 0.5, 0.5, 0, 0)
-    love.graphics.setColor(0.2, 0.21, 0.2, 1.0)
-    local off = 40
-    --[[love.graphics.polygon(
-        'fill',
-        VIRTUAL_WIDTH / 2 - off, 
-        VIRTUAL_HEIGHT / 2 - off,
-        VIRTUAL_WIDTH / 2 - off,
-        VIRTUAL_HEIGHT / 2 + off,
-        VIRTUAL_WIDTH / 2 + off,
-        VIRTUAL_HEIGHT / 2 + off,
-        VIRTUAL_WIDTH / 2 + off,
-        VIRTUAL_HEIGHT / 2 - off
-    )--]]
+
     love.graphics.setColor(0.1, 1.0, 0.1, 1.0)
     love.graphics.printf("Welcome!", 
     0, VIRTUAL_HEIGHT / 2 - 48, VIRTUAL_WIDTH, 'center')
     love.graphics.printf("Press Any Key to Continue", 0, VIRTUAL_HEIGHT / 2 - 24, VIRTUAL_WIDTH, 'center')
     love.graphics.setColor(self.color)
+    love.graphics.draw(gTextures['background'], 0, 0)
+    love.graphics.draw(gTextures['red_blob_still'], (VIRTUAL_WIDTH / 2) - 16, VIRTUAL_HEIGHT - 32)
+    love.graphics.draw(gTextures['tile'], 0, 0)
     --love.graphics.draw(gTextures['red_blob_still'], 0, 0)
 end
 
@@ -39,3 +27,4 @@ function StartState:update()
     end
 end
 
+    
