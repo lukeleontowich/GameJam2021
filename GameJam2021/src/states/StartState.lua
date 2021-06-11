@@ -14,17 +14,11 @@ function StartState:init()
 end
 
 function StartState:render()
-
-
-    
-    love.graphics.setColor(0.1, 1.0, 0.1, 1.0)
-    love.graphics.printf("Welcome!", 
-    0, VIRTUAL_HEIGHT / 2 - 48, VIRTUAL_WIDTH, 'center')
-    love.graphics.printf("Press Any Key to Continue", 0, VIRTUAL_HEIGHT / 2 - 24, VIRTUAL_WIDTH, 'center')
-    love.graphics.setColor({1.0, 1.0, 1.0, 1.0})
     love.graphics.draw(gTextures['background'], 0, 0)
     love.graphics.setFont(gFonts['title'])
+    love.graphics.setColor(0.1, 1.0, 0.1, 1.0)
     love.graphics.printf('Blobs', 1, VIRTUAL_HEIGHT / 2 - 40 + 1, VIRTUAL_WIDTH, 'center')
+    love.graphics.setColor(1, 1, 1, 1)
     self.blueBlob:render()
     self.redBlob:render()
 end
