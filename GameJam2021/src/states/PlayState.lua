@@ -4,6 +4,8 @@ function PlayState:init()
 end
 
 function PlayState:update(dt)
+    self.redBlob:update(dt)
+    self.blueBlob:update(dt)
 end
 
 function PlayState:render()

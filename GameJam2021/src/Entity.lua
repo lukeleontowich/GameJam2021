@@ -23,6 +23,7 @@ function Entity:init(def)
     self.map = def.map
 
     self.level = def.level
+
 end
 
 
