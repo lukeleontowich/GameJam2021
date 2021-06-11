@@ -28,5 +28,7 @@ gTextures = {
 }
 
 gSounds = {
+    ['select'] = love.audio.newSource('sounds/Select.wav', 'static'),
+    
     ['music'] = love.audio.newSource('sounds/Bubblegum.wav', 'static')
 }

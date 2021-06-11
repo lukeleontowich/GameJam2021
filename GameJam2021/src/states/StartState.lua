@@ -15,6 +15,7 @@ end
 
 function StartState:update(dt) 
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+        gSounds['select']:play()
         gStateMachine:change('play', {
             redBlob = self.redBlob,
             blueBlob = self.blueBlob
