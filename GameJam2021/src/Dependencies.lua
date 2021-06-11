@@ -26,3 +26,7 @@ gTextures = {
     ['blue_blob_squishing'] = love.graphics.newImage('graphics/Blue_Blob_Squish_1.png'),
     ['blue_blob_squished'] = love.graphics.newImage('graphics/Blue_Blob_Squish_2.png')
 }
+
+gSounds = {
+    ['music'] = love.audio.newSource('sounds/Bubblegum.wav', 'static')
+}
