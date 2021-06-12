@@ -2,7 +2,6 @@ PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
     self.tiles = LevelMaker.generate(VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
-    self.enemies = EnemySpawner.generate()
     self.chest_key = ChestKey( 
         {chest_x = VIRTUAL_WIDTH / 4,
         chest_y = VIRTUAL_HEIGHT / 4,
@@ -34,18 +33,23 @@ function PlayState:update(dt)
 
     --check for enemy collisions
     for enemy in pairs(self.enemies) do
-        if self.enemies[enemy]:collides(self.redBlob) then
+        if self.enemies[enemy]:collides(self.redBlob) and not self.enemies[enemy].isDead then
             gSounds['enemy_death']:play()
             self.enemies[enemy].isDead = true
         end
     end
 
     for enemy in pairs(self.enemies) do
-        if self.enemies[enemy]:collides(self.blueBlob) then
+        if self.enemies[enemy]:collides(self.blueBlob) and not self.enemies[enemy].isDead then
             gSounds['enemy_death']:play()
+            self.enemies[enemy].isDead = true
+            self.enemies[enemy].timer = 0
+        end
+        if not self.enemies[enemy].exists then
             table.remove(self.enemies, enemy)
         end
     end
+
     if not self.chest_key:isOpened() then
         if self.chest_key:hasKey(self.blueBlob) then
             self.chest_key:openingChest(self.blueBlob)
@@ -84,4 +88,5 @@ function PlayState:enter(params)
         blueBlob = self.blueBlob,
         redBlob = self.redBlob
     })
+    self.enemies = EnemySpawner.generate(self.redBlob, self.blueBlob)
 end

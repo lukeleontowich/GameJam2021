@@ -32,6 +32,9 @@ function ChestKey:hasKey(target)
             self.key_x > target.x + target.width or
             target.y > self.key_y + self.key_height or 
             self.key_y > target.y + target.height) then
+        if not self.has_key then
+            gSounds['pick_up_key']:play()
+        end
         self.has_key = true
         return true  
     else
@@ -44,7 +47,9 @@ function ChestKey:openingChest(target)
                 self.chest_x > target.x + target.width or 
                 target.y > self.chest_y + self.chest_height or 
                 self.chest_y > target.y + target.height) then
-
+                if not self.chest_opened then
+                    gSounds['chest_unlocked']:play()
+                end
                 self.chest_opened = true
     end
 end
