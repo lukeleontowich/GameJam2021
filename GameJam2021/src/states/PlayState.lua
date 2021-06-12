@@ -92,14 +92,17 @@ function PlayState:update(dt)
 
     --  Check if an enemy is in a portal then send it
     for enemy in pairs(self.enemies) do
-        if self.portal:collides(self.enemies[enemy]) and not self.enemies[enemy].portaled then
-            self.enemies[enemy].portaled = true
-            if self.enemies[enemy].side == 1 then
-                print("here")
-                self.enemies[enemy].side = 2 
-            elseif self.enemies[enemy].side == 2 then
-                print("shoudln't be here")
-                self.enemies[enemy].side = 1
+        if not self.enemies[enemy].portaled then 
+            if self.portal:collides(self.enemies[enemy]) then
+                self.enemies[enemy].portaled = true
+                if self.enemies[enemy].side == 1 then
+                    print("here")
+                    self.enemies[enemy].side = 2 
+                    print("enemy side:", self.enemies[enemy].side)
+                elseif self.enemies[enemy].side == 2 then
+                    print("shoudln't be here")
+                    self.enemies[enemy].side = 1
+                end
             end
         end
     end

@@ -70,7 +70,17 @@ function Enemy:update(dt)
         elseif self.redBlob.y > self.y then
             self.y = self.y + self.dy
         end
-    else
+    elseif self.side == 2 then
+        if self.blueBlob.x > self.x then
+            self.x = self.x + self.dx
+        elseif self.blueBlob.x < self.x then
+            self.x = self.x - self.dx
+        end
+        if self.blueBlob.y < self.y then
+            self.y = self.y - self.dy 
+        elseif self.blueBlob.y > self.y then
+            self.y = self.y + self.dy
+        end
     end
 end
 
