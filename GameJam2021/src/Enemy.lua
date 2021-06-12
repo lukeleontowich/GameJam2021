@@ -15,12 +15,16 @@ function Enemy:init(params)
     self.interval = 0.2
 
     self.isDead = false
+    self.exists = true
 end
 
 function Enemy:update(dt)
     self.timer = self.timer + dt
 
     if self.timer > self.interval then
+        if self.isDead then
+            self.exists = false
+        end
         self.timer = self.timer % self.interval
 
         if self.currentAnimation == 1 or self.currentAnimation == 3 then
@@ -69,7 +73,4 @@ function Enemy:collides(target)
     return (not (target.x > self.x + self.width or self.x > target.x + target.width or
             target.y > self.y + self.height or self.y > target.y + target.height)) and
             target.color == self.color
-end
-
-function Enemy:death()
 end
