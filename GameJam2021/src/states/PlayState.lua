@@ -26,12 +26,25 @@ function PlayState:init()
     })
 
     self.health = 3
+
+    self.pbutton1 = PressureButton({y = 20, side = 1})
+    self.pbutton2 = PressureButton({y = 50, side = 2})
 end
 
 function PlayState:update(dt)
     self.redBlob:update(dt)
     self.blueBlob:update(dt)
-    self.rope:update(dt)
+    local vel_left, vel_right = self.rope:update(dt)
+    --  TAKE THIS OUT LATER
+    if vel_left > 0 then
+        print("vel_left: ", vel_left)
+    end
+    if vel_right > 0 then
+        print("vel_right: ", vel_right)
+    end
+
+    self.pbutton1:update(vel_left, vel_right, self.redBlob, self.blueBlob)
+    self.pbutton2:update(vel_left, vel_right, self.redBlob, self.blueBlob)
     for x in pairs(self.enemies) do
         self.enemies[x]:update(dt)
     end
@@ -141,6 +154,8 @@ function PlayState:render()
     end
     self.portal:render()
     self.pressure_button:render()
+    self.pbutton1:render()
+    self.pbutton2:render()
     self.arrow_button:render()
     self.chest_key.chest:render() 
     self.rope:render()

@@ -14,6 +14,7 @@ require 'src/Portal'
 require 'src/Chest'
 require 'src/Key'
 require 'src/Button'
+require 'src/PressureButton'
 
 -- game states
 require 'src/states/BaseState'
@@ -56,7 +57,7 @@ gTextures = {
     ['arrow_button'] = love.graphics.newImage('graphics/Arrow_Button.png'),
     ['arrow_button_pressed'] = love.graphics.newImage('graphics/Arrow_Button_Pressed.png'),
     ['up_arrow'] = love.graphics.newImage('graphics/Up.png'),
-    ['down_arrow'] = love.graphics.newImage('graphics/Down.png'),
+    ['down_arrow'] = love.graphics.newImage('graphics/down.png'),
     ['left_arrow'] = love.graphics.newImage('graphics/Left.png'),
     ['right_arrow'] = love.graphics.newImage('graphics/Right.png')
 }
