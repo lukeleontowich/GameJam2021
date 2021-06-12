@@ -50,6 +50,18 @@ function PlayState:update(dt)
         end
     end
 
+    for enemy in pairs(self.enemies) do
+        for enemy2 in pairs(self.enemies) do
+            if self.enemies[enemy].x < self.enemies[enemy2].x + self.enemies[enemy2].width 
+            and self.enemies[enemy].x > self.enemies[enemy2].x then
+                self.enemies[enemy].x = self.enemies[enemy].x + self.enemies[enemy].dx
+            elseif self.enemies[enemy].y < self.enemies[enemy2].y + self.enemies[enemy2].height
+            and self.enemies[enemy].y > self.enemies[enemy2].y then
+                self.enemies[enemy].y = self.enemies[enemy].y + self.enemies[enemy].dy
+            end
+        end
+    end
+
     if not self.chest_key:isOpened() then
         if self.chest_key:hasKey(self.blueBlob) then
             self.chest_key:openingChest(self.blueBlob)
