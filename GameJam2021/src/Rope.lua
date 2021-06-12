@@ -17,27 +17,7 @@ function Rope:init(param)
     self.length = 0
 end
 
-function Rope:ropeSnap()
-    
-    self.redBlob.x = center_x- tile_size - self.redBlob.centerX
-    self.blueBlob.x = center_x + tile_size - self.blueBlob.centerX 
---[[
-    --  case 1
-    if self.redBlob.y > self.blueBlob.y then
-        center_y = (self.redBlob.y - self.blueBlob.y) / 2 + self.blueBlob.y 
-        self.redBlob
-    -- case 2
-    elseif self.redBlob.x > self.blueBlob.x and self.redBlob.y < self.blueBlob.y then
-        center_x = (self.redBlob.x - self.blueBlob.x) / 2 + self.blueBlob.x
-        center_y = (self.blueBlob.y - self.redBlob.y) / 2 + self.redBlob.y 
-        self.redBlob.x = center_x - self.redBlob.width
-        self.redBlob.y = center_y - self.redBlob.height
-        self.blueBlob.x = center_x + self.blueBlob.width
-        self.blueBlob.y = center_y + self.blueBlob.height
-    end
-]]
 
-end
 
 function Rope:update(dt)
     print("tensor number: ", self.tensor_num)
@@ -83,4 +63,9 @@ function Rope:render()
     )
     love.graphics.setColor(1.0, 1.0, 1.0, 1.0)
 
+end
+
+function Rope:ropeSnap()
+    self.redBlob.x = center_x- tile_size - self.redBlob.centerX
+    self.blueBlob.x = center_x + tile_size - self.blueBlob.centerX 
 end
