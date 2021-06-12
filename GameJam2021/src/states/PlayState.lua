@@ -12,9 +12,10 @@ end
 
 function PlayState:render()
     love.graphics.draw(gTextures['background'], 0, 0)
+    self.rope:render()
     self.redBlob:render()
     self.blueBlob:render()
-    self.rope:render()
+    
 end
 
 function PlayState:enter(params)
