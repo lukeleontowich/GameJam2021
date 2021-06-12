@@ -15,9 +15,10 @@ function PlayState:render()
     for i = 1, #self.tiles do
         self.tiles[i]:render()
     end
+    self.rope:render()
     self.redBlob:render()
     self.blueBlob:render()
-    self.rope:render()
+    
 end
 
 function PlayState:enter(params)
