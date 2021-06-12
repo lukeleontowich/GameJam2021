@@ -9,3 +9,7 @@ function Key:init(params)
     self.width = 16
     self.height = 16 
 end
+
+function Key:render()
+    love.graphics.draw(gTextures['key'], self.x, self.y)
+end

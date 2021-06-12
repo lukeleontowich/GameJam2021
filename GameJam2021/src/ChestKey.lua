@@ -20,8 +20,6 @@ function ChestKey:init(params)
     self.key_height = 16
 
     self.has_key = false
-
-    self.chest_opened = false
 end
 
 function ChestKey:hasKey(target) 
@@ -49,10 +47,10 @@ function ChestKey:openingChest(target)
                 self.chest.x > target.x + target.width or 
                 target.y > self.chest.y + self.chest.height or 
                 self.chest.y > target.y + target.height) then
-                if not self.chest_opened then
+                if not self.chest.chest_opened then
                     gSounds['chest_unlocked']:play()
                 end
-                self.chest_opened = true
+                self.chest.chest_opened = true
     end
 end
 
@@ -67,14 +65,9 @@ function ChestKey:keyInChest(target)
 end
 
 function ChestKey:render()
-    if not self.chest_opened then
-        love.graphics.draw(gTextures['chest'], self.chest.x, self.chest.y)
-        love.graphics.draw(gTextures['key'], self.key.x, self.key.y)
-    else
-        love.graphics.draw(gTextures['chest_open'], self.chest.x, self.chest.y)
-    end
+
 end
 
 function ChestKey:isOpened()
-    return chest_opened
+    return self.chest.chest_opened
 end
