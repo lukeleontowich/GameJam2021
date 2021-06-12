@@ -24,19 +24,6 @@ function PlayState:update(dt)
         self.enemies[x]:update(dt)
     end
 
-    -- check for tile collisions
-    for tile in pairs(self.tiles) do
-        if self.tiles[tile]:collides(self.redBlob) then
-            gSounds['collision']:play()
-        end
-    end
-
-    for tile in pairs(self.tiles) do
-        if self.tiles[tile]:collides(self.blueBlob) then
-            gSounds['collision']:play()
-        end
-    end
-
     --check for enemy collisions
     for enemy in pairs(self.enemies) do
         if self.enemies[enemy]:collides(self.redBlob) and not self.enemies[enemy].isDead then
