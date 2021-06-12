@@ -24,6 +24,8 @@ require 'src/states/BaseState'
 require 'src/states/PlayState'
 require 'src/states/StartState'
 require 'src/states/SimonSaysState'
+require 'src/states/PauseState'
+require 'src/states/TransitionState'
 require 'src/states/GameOverState'
 
 require 'src/LevelMaker'

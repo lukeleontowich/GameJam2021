@@ -10,7 +10,7 @@ function Arrow:init(params)
     -- 4 = right
     self.direction = params.direction
 
-    self.dy = 1
+    self.dy = 0.5
 
     self.interval = 0.02
     self.timer = 0
