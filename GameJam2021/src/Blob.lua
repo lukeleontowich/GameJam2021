@@ -71,11 +71,14 @@ function Blob:update(dt)
         end
     end
 
-    
     --  Make sure the blob stays on screen
-    if self.x > VIRTUAL_WIDTH - self.sx * self.pixels then
+    if self.color == 1 and self.x + self.width > VIRTUAL_WIDTH / 2 - 7 then
         self.x = self.x - self.dx
-    elseif self.x < 0  then
+    elseif self.color == 2 and self.x > VIRTUAL_WIDTH - self.width then
+        self.x = self.x - self.dx
+    elseif self.color == 1 and self.x < 0  then
+        self.x = self.x + self.dx
+    elseif self.color == 2 and self.x < VIRTUAL_WIDTH / 2 + 7 then
         self.x = self.x + self.dx
     elseif self.y < 0 then 
         self.y = self.y + self.dy
