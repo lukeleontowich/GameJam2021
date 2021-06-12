@@ -40,6 +40,9 @@ function PlayState:update(dt)
         if self.enemies[enemy]:collides(self.redBlob) and not self.enemies[enemy].isDead then
             gSounds['enemy_death']:play()
             self.enemies[enemy].isDead = true
+            self.enemies[enemy].timer = 0
+        elseif self.enemies[enemy]:hurt(self.redBlob) then
+            gSounds['hurt']:play()
         end
     end
 
@@ -48,6 +51,8 @@ function PlayState:update(dt)
             gSounds['enemy_death']:play()
             self.enemies[enemy].isDead = true
             self.enemies[enemy].timer = 0
+        elseif self.enemies[enemy]:hurt(self.blueBlob) then
+            gSounds['hurt']:play()
         end
         if not self.enemies[enemy].exists then
             table.remove(self.enemies, enemy)
@@ -83,6 +88,7 @@ function PlayState:render()
     for tile in pairs(self.tiles) do
         self.tiles[tile]:render()
     end
+    self.portal:render()
     self.rope:render()
     self.redBlob:render()
     self.blueBlob:render()
@@ -90,7 +96,6 @@ function PlayState:render()
         self.enemies[x]:render()
     end
     self.chest_key:render() 
-    self.portal:render()
 end
 
 function PlayState:enter(params)
