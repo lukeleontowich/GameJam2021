@@ -4,14 +4,13 @@ function PlayState:init()
     self.tiles = LevelMaker.generate(VIRTUAL_WIDTH, VIRTUAL_HEIGHT) 
     self.chest_key = ChestKey( 
         {chest = Chest({x = VIRTUAL_WIDTH / 4, y = VIRTUAL_HEIGHT / 4}),
-        key_x = 3 * VIRTUAL_WIDTH / 4,
-        key_y = 3 * VIRTUAL_HEIGHT / 4}
+        key = Key({x = 3 * VIRTUAL_WIDTH / 4, y = 3 * VIRTUAL_HEIGHT / 4})}
     )
     self.portal = Portal({
         left_x = 20,
         left_y = 20,
         right_x = VIRTUAL_WIDTH - 40,
-        left_y = 20
+        right_y = 20
     })
 end
 
@@ -80,8 +79,7 @@ function PlayState:update(dt)
         end
     end
 
-    --if not self.chest_key.portaled then
-      --  self.portal:collides(self.chest_key)
+    self.portal:collides(self.chest_key.key)
 
 end
 
