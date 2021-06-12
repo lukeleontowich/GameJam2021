@@ -7,11 +7,14 @@ require 'src/StateMachine'
 
 require 'src/Blob'
 require 'src/Rope'
+require 'src/Tile'
 
 -- game states
 require 'src/states/BaseState'
 require 'src/states/PlayState'
 require 'src/states/StartState'
+
+require 'src/LevelMaker'
 
 gFonts = {
     ['title'] = love.graphics.newFont('fonts/Title.ttf', 32),
