@@ -69,4 +69,14 @@ function Rope:ropeSnap()
     gSounds['rope_snap']:play()
     self.redBlob.x = center_x- tile_size - self.redBlob.centerX
     self.blueBlob.x = center_x + tile_size - self.blueBlob.centerX 
+
+    if self.redBlob.y < self.blueBlob.y then
+        center_y = (self.blueBlob.y - self.redBlob.y) / 2 + self.redBlob.y
+        self.redBlob.y = center_y - self.redBlob.centerY
+        self.blueBlob.y = center_y + self.blueBlob.centerY
+    else
+        center_y = (self.redBlob.y - self.blueBlob.y) / 2 + self.blueBlob.centerY
+        self.redBlob.y = center_y + self.redBlob.centerY
+        self.blueBlob.y = center_y - self.blueBlob.centerY
+    end
 end
