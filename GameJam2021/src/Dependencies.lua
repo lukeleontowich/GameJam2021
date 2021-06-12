@@ -5,6 +5,7 @@ require 'src/Constants'
 require 'src/StateMachine'
 
 require 'src/Blob'
+require 'src/Rope'
 
 -- game states
 require 'src/states/BaseState'
