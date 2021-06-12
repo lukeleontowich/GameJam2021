@@ -5,7 +5,7 @@ function SimonSaysState:init()
     for i = 1, 5 do
         arrow = Arrow({
             x = math.random(VIRTUAL_WIDTH - 20),
-            y = 0 + (-30) * i,
+            y = 0 + (-40) * i,
             direction = math.random(4)
         })
         table.insert(self.arrows, arrow)
@@ -37,37 +37,21 @@ function SimonSaysState:update(dt)
         end
     end
 
-    if love.keyboard.wasPressed('up') then
-        if currentDirection == 1 then
-            currentSound:stop()
-            currentSound = gSounds['up_arrow']
-            currentSound:play()
-        else
-            --self:loseHeart()
+    if currentDirection == 1 then
+        if love.keyboard.wasPressed('up') then
+            gSounds['up_arrow']:play()
         end
-    elseif love.keyboard.wasPressed('down') then
-        if currentDirection == 2 then
-            currentSound:stop()
-            currentSound = gSounds['down_arrow']
-            currentSound:play()
-        else
-            --self:loseHeart()
+    elseif currentDirection == 2 then
+        if love.keyboard.wasPressed('down') then
+            gSounds['down_arrow']:play()
         end
-    elseif love.keyboard.wasPressed('left') then
-        if currentDirection == 3 then
-            currentSound:stop()
-            currentSound = gSounds['left_arrow']
-            currentSound:play()
-        else
-            --self:loseHeart()
+    elseif currentDirection == 3 then
+        if love.keyboard.wasPressed('left') then
+            gSounds['left_arrow']:play()
         end
-    elseif love.keyboard.wasPressed('right') then
-        if currentDirection == 4 then
-            currentSound:stop()
-            currentSound = gSounds['right_arrow']
-            currentSound:play()
-        else
-            --self:loseHeart()
+    elseif currentDirection == 4 then
+        if love.keyboard.wasPressed('right') then
+            gSounds['right_arrow']:play()
         end
     end
 end
@@ -103,6 +87,20 @@ function SimonSaysState:render()
     love.graphics.draw(gTextures['left_arrow'], VIRTUAL_WIDTH / 2 - 64, VIRTUAL_HEIGHT - 30)
     love.graphics.draw(gTextures['right_arrow'], VIRTUAL_WIDTH / 2 + 64, VIRTUAL_HEIGHT - 30)
     love.graphics.setColor(1, 1, 1, 1)
+
+    --draw lines for guidence
+    love.graphics.line(
+        0, 
+        VIRTUAL_HEIGHT - 40, 
+        VIRTUAL_WIDTH, 
+        VIRTUAL_HEIGHT - 40
+    )
+    love.graphics.line(
+        0, 
+        VIRTUAL_HEIGHT - 15, 
+        VIRTUAL_WIDTH, 
+        VIRTUAL_HEIGHT - 15
+    )
     -- start arrow scrolling
     for a in pairs(self.arrows) do
         self.arrows[a]:render()
