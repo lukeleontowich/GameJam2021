@@ -20,6 +20,7 @@ function Portal:collides(target)
                 target.y > self.left_y + self.height or 
                 self.left_y > target.y + target.height) then
                     
+                    gSounds['portal_activate']:play()
                     print("collision left")
                     target.portaled = true
                     target.x = self.right_x
@@ -29,6 +30,7 @@ function Portal:collides(target)
                     target.y > self.right_y + self.height or 
                     self.right_y > target.y + target.height) then
 
+                        gSounds['portal_activate']:play()
                         print("collision right")
                         target.portaled = true
                         print("target.x before: ", target.x)
