@@ -12,8 +12,8 @@ end
 
 function PlayState:render()
     love.graphics.draw(gTextures['background'], 0, 0)
-    for i = 1, #self.tiles do
-        self.tiles[i]:render()
+    for tile in pairs(self.tiles) do
+        self.tiles[tile]:render()
     end
     self.rope:render()
     self.redBlob:render()

@@ -3,9 +3,11 @@ LevelMaker = Class{}
 function LevelMaker.generate(width, height)
     local tiles = {}
     
-    for y = 0, VIRTUAL_HEIGHT do
-        table.insert(tiles, Tile(VIRTUAL_WIDTH / 2 - 8, y))
-        y = y + 31
+    local y = 0
+    for i = 1, 8 do
+        local tile = Tile(VIRTUAL_WIDTH / 2 - 8, y)
+        table.insert(tiles, tile)
+        y = y + 18
     end
 
     return tiles
