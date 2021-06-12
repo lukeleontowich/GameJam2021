@@ -1,5 +1,6 @@
 Class = require 'lib/class'
 push = require 'lib/push'
+Timer = require 'lib/knife.timer'
 
 require 'src/Constants'
 require 'src/StateMachine'
@@ -30,6 +31,6 @@ gTextures = {
 
 gSounds = {
     ['select'] = love.audio.newSource('sounds/Select.wav', 'static'),
-    
+
     ['music'] = love.audio.newSource('sounds/Bubblegum.wav', 'static')
 }
