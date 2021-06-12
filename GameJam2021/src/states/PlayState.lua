@@ -34,18 +34,19 @@ function PlayState:update(dt)
 
     --check for enemy collisions
     for enemy in pairs(self.enemies) do
-        if self.enemies[enemy]:collides(self.redBlob) then
+        if self.enemies[enemy]:collides(self.redBlob) and not self.enemies[enemy].isDead then
             gSounds['enemy_death']:play()
             self.enemies[enemy].isDead = true
         end
     end
 
     for enemy in pairs(self.enemies) do
-        if self.enemies[enemy]:collides(self.blueBlob) then
+        if self.enemies[enemy]:collides(self.blueBlob) and not self.enemies[enemy].isDead then
             gSounds['enemy_death']:play()
-            table.remove(self.enemies, enemy)
+            self.enemies[enemy].isDead = true
         end
     end
+
     if not self.chest_key:isOpened() then
         if self.chest_key:hasKey(self.blueBlob) then
             self.chest_key:openingChest(self.blueBlob)

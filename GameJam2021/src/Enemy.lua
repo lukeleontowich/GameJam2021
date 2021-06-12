@@ -70,3 +70,6 @@ function Enemy:collides(target)
             target.y > self.y + self.height or self.y > target.y + target.height)) and
             target.color == self.color
 end
+
+function Enemy:death()
+end
