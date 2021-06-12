@@ -12,6 +12,8 @@ function PlayState:init()
         right_x = VIRTUAL_WIDTH - 40,
         right_y = 20
     })
+
+    self.health = 3
 end
 
 function PlayState:update(dt)
@@ -43,6 +45,7 @@ function PlayState:update(dt)
             self.enemies[enemy].timer = 0
         elseif self.enemies[enemy]:hurt(self.redBlob) then
             gSounds['hurt']:play()
+            self.health = self.health - 1
         end
     end
 
@@ -53,6 +56,7 @@ function PlayState:update(dt)
             self.enemies[enemy].timer = 0
         elseif self.enemies[enemy]:hurt(self.blueBlob) then
             gSounds['hurt']:play()
+            self.health = self.health - 1
         end
         if not self.enemies[enemy].exists then
             table.remove(self.enemies, enemy)
@@ -87,6 +91,11 @@ function PlayState:render()
     love.graphics.draw(gTextures['background'], 0, 0)
     for tile in pairs(self.tiles) do
         self.tiles[tile]:render()
+    end
+    local distance = VIRTUAL_WIDTH - 9
+    for h = 1, self.health do
+        love.graphics.draw(gTextures['heart'], distance, 0)
+        distance = distance - 9
     end
     self.portal:render()
     self.rope:render()

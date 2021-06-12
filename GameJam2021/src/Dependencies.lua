@@ -45,7 +45,8 @@ gTextures = {
     ['blue_enemy_left'] = love.graphics.newImage('graphics/Blue_Enemy_Left.png'),
     ['blue_enemy_right'] = love.graphics.newImage('graphics/Blue_Enemy_Right.png'),
     ['key'] = love.graphics.newImage('graphics/Key.png'),
-    ['chest'] = love.graphics.newImage('graphics/Chest.png')
+    ['chest'] = love.graphics.newImage('graphics/Chest.png'),
+    ['heart'] = love.graphics.newImage('graphics/Heart.png')
 }
 
 gSounds = {
