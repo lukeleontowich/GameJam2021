@@ -19,6 +19,8 @@ require 'src/Button'
 require 'src/states/BaseState'
 require 'src/states/PlayState'
 require 'src/states/StartState'
+require 'src/states/SimonSaysState'
+require 'src/states/GameOverState'
 
 require 'src/LevelMaker'
 require 'src/EnemySpawner'
@@ -52,7 +54,11 @@ gTextures = {
     ['pressure_button'] = love.graphics.newImage('graphics/Pressure_Button.png'),
     ['button_base'] = love.graphics.newImage('graphics/Button_Base.png'),
     ['arrow_button'] = love.graphics.newImage('graphics/Arrow_Button.png'),
-    ['arrow_button_pressed'] = love.graphics.newImage('graphics/Arrow_Button_Pressed.png') 
+    ['arrow_button_pressed'] = love.graphics.newImage('graphics/Arrow_Button_Pressed.png'),
+    ['up_arrow'] = love.graphics.newImage('graphics/Up.png'),
+    ['down_arrow'] = love.graphics.newImage('graphics/Down.png'),
+    ['left_arrow'] = love.graphics.newImage('graphics/Left.png'),
+    ['right_arrow'] = love.graphics.newImage('graphics/Right.png')
 }
 
 gSounds = {
