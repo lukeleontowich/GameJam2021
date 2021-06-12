@@ -36,6 +36,10 @@ gTextures = {
     ['red_enemy_still'] = love.graphics.newImage('graphics/Red_Enemy_Still.png'),
     ['red_enemy_left'] = love.graphics.newImage('graphics/Red_Enemy_Left.png'),
     ['red_enemy_right'] = love.graphics.newImage('graphics/Red_Enemy_Right.png'),
+    ['red_enemy_dead'] = love.graphics.newImage('graphics/Red_Enemy_Dead.png'),
+    ['blue_enemy_still'] = love.graphics.newImage('graphics/Blue_Enemy_Still.png'),
+    ['blue_enemy_left'] = love.graphics.newImage('graphics/Blue_Enemy_Left.png'),
+    ['blue_enemy_right'] = love.graphics.newImage('graphics/Blue_Enemy_Right.png'),
     ['key'] = love.graphics.newImage('graphics/Key.png'),
     ['chest'] = love.graphics.newImage('graphics/Chest.png')
 }
@@ -44,6 +48,7 @@ gSounds = {
     ['select'] = love.audio.newSource('sounds/Select.wav', 'static'),
     ['collision'] = love.audio.newSource('sounds/Collision.wav', 'static'),
     ['rope_snap'] = love.audio.newSource('sounds/Rope_Snap.wav', 'static'),
+    ['enemy_death'] = love.audio.newSource('sounds/Enemy_Death.wav', 'static'),
 
     ['music'] = love.audio.newSource('sounds/Bubblegum.wav', 'static')
 }

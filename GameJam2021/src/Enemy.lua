@@ -6,13 +6,15 @@ function Enemy:init(params)
     self.color = params.color
 
     self.width = 16
-    self.width = 16
+    self.height = 16
 
     self.timer = 0
 
     self.currentAnimation = 2
     self.animationDirection = 2
     self.interval = 0.2
+
+    self.isDead = false
 end
 
 function Enemy:update(dt)
@@ -38,20 +40,27 @@ end
 
 function Enemy:render()
     if self.color == 1 then
-        if self.currentAnimation == 1 then
-            love.graphics.draw(gTextures['red_enemy_left'], self.x, self.y, 0, self.sx, self.sy)
-        elseif self.currentAnimation == 2 then
-            love.graphics.draw(gTextures['red_enemy_still'], self.x, self.y, 0, self.sx, self.sy)
+        if self.isDead then
+            love.graphics.draw(gTextures['red_enemy_dead'], self.x, self.y)
         else
-            love.graphics.draw(gTextures['red_enemy_right'], self.x, self.y, 0, self.sx, self.sy)
+            if self.currentAnimation == 1 then
+                love.graphics.draw(gTextures['red_enemy_left'], self.x, self.y)
+            elseif self.currentAnimation == 2 then
+                love.graphics.draw(gTextures['red_enemy_still'], self.x, self.y)
+            else
+                love.graphics.draw(gTextures['red_enemy_right'], self.x, self.y)
+            end
         end
     else
-        if self.currentAnimation == 1 then
-            love.graphics.draw(gTextures['blue_blob_still'], self.x, self.y, 0, self.sx, self.sy)
-        elseif self.currentAnimation == 2 then
-            love.graphics.draw(gTextures['blue_blob_squishing'], self.x, self.y, 0, self.sx, self.sy)
+        if self.isDead then
         else
-            love.graphics.draw(gTextures['blue_blob_squished'], self.x, self.y, 0, self.sx, self.sy)
+            if self.currentAnimation == 1 then
+                love.graphics.draw(gTextures['blue_enemy_left'], self.x, self.y, 0, self.sx, self.sy)
+            elseif self.currentAnimation == 2 then
+                love.graphics.draw(gTextures['blue_enemy_still'], self.x, self.y, 0, self.sx, self.sy)
+            else
+                love.graphics.draw(gTextures['blue_enemy_right'], self.x, self.y, 0, self.sx, self.sy)
+            end
         end
     end
 end

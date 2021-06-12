@@ -25,6 +25,21 @@ function PlayState:update(dt)
             gSounds['collision']:play()
         end
     end
+
+    --check for enemy collisions
+    for enemy in pairs(self.enemies) do
+        if self.enemies[enemy]:collides(self.redBlob) then
+            gSounds['enemy_death']:play()
+            self.enemies[enemy].isDead = true
+        end
+    end
+
+    for enemy in pairs(self.enemies) do
+        if self.enemies[enemy]:collides(self.blueBlob) then
+            gSounds['enemy_death']:play()
+            table.remove(self.enemies, enemy)
+        end
+    end
 end
 
 function PlayState:render()

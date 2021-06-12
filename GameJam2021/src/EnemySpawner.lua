@@ -9,6 +9,14 @@ function EnemySpawner.generate()
     })
 
     table.insert(enemies, enemy)
-    
+
+    enemy = Enemy({
+        x = 30,
+        y = 5,
+        color = 2
+    })
+
+    table.insert(enemies, enemy)
+
     return enemies
 end
