@@ -120,13 +120,13 @@ function PlayState:render()
         distance = distance - 9
     end
     self.portal:render()
+    self.chest_key:render() 
     self.rope:render()
     self.redBlob:render()
     self.blueBlob:render()
     for x in pairs(self.enemies) do
         self.enemies[x]:render()
     end
-    self.chest_key:render() 
 end
 
 function PlayState:enter(params)

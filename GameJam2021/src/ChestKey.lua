@@ -70,6 +70,8 @@ function ChestKey:render()
     if not self.chest_opened then
         love.graphics.draw(gTextures['chest'], self.chest.x, self.chest.y)
         love.graphics.draw(gTextures['key'], self.key.x, self.key.y)
+    else
+        love.graphics.draw(gTextures['chest_open'], self.chest.x, self.chest.y)
     end
 end
 
