@@ -50,7 +50,9 @@ gTextures = {
     ['chest_open'] = love.graphics.newImage('graphics/Chest_Open.png'),
     ['heart'] = love.graphics.newImage('graphics/Heart.png'),
     ['pressure_button'] = love.graphics.newImage('graphics/Pressure_Button.png'),
-    ['button_base'] = love.graphics.newImage('graphics/Button_Base.png')
+    ['button_base'] = love.graphics.newImage('graphics/Button_Base.png'),
+    ['arrow_button'] = love.graphics.newImage('graphics/Arrow_Button.png'),
+    ['arrow_button_pressed'] = love.graphics.newImage('graphics/Arrow_Button_Pressed.png') 
 }
 
 gSounds = {
@@ -62,6 +64,7 @@ gSounds = {
     ['chest_unlocked'] = love.audio.newSource('sounds/Unlock_Chest.wav', 'static'),
     ['portal_activate'] = love.audio.newSource('sounds/Portal_Activate.wav', 'static'),
     ['hurt'] = love.audio.newSource('sounds/Hurt.wav', 'static'),
+    ['button_push'] = love.audio.newSource('sounds/Button_Push.wav', 'static'),
 
     ['music'] = love.audio.newSource('sounds/Bubblegum.wav', 'static')
 }
