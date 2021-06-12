@@ -16,6 +16,7 @@ require 'src/states/PlayState'
 require 'src/states/StartState'
 
 require 'src/LevelMaker'
+require 'src/EnemySpawner'
 
 gFonts = {
     ['title'] = love.graphics.newFont('fonts/Title.ttf', 32),
