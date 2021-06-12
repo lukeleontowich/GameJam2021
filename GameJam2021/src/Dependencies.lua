@@ -13,6 +13,7 @@ require 'src/ChestKey'
 require 'src/Portal'
 require 'src/Chest'
 require 'src/Key'
+require 'src/Button'
 
 -- game states
 require 'src/states/BaseState'
@@ -47,7 +48,9 @@ gTextures = {
     ['key'] = love.graphics.newImage('graphics/Key.png'),
     ['chest'] = love.graphics.newImage('graphics/Chest.png'),
     ['chest_open'] = love.graphics.newImage('graphics/Chest_Open.png'),
-    ['heart'] = love.graphics.newImage('graphics/Heart.png')
+    ['heart'] = love.graphics.newImage('graphics/Heart.png'),
+    ['pressure_button'] = love.graphics.newImage('graphics/Pressure_Button.png'),
+    ['button_base'] = love.graphics.newImage('graphics/Button_Base.png')
 }
 
 gSounds = {

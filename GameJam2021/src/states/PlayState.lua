@@ -13,6 +13,12 @@ function PlayState:init()
         right_y = 20
     })
 
+    self.pressure_button = Button({
+        x = 0, 
+        y = VIRTUAL_HEIGHT - 14, 
+        type = 1 
+    })
+
     self.health = 3
 end
 
@@ -111,7 +117,8 @@ function PlayState:render()
         distance = distance - 9
     end
     self.portal:render()
-    self.chest_key:render() 
+    self.chest_key:render()
+    self.pressure_button:render()
     self.rope:render()
     self.redBlob:render()
     self.blueBlob:render()
