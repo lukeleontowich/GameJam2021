@@ -29,8 +29,12 @@ function Portal:collides(target)
                     self.right_y > target.y + target.height) then
                         print("collision right")
                         target.portaled = true
+                        print("target.x before: ", target.x)
+                        print("target.y before: ", target.y)
                         target.x = self.left_x
                         target.y = self.left_y
+                        print("target.x after: ", target.x)
+                        print("target.y after: ", target.y)
         end
     end
 end
