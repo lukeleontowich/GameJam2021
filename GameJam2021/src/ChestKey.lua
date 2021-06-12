@@ -18,6 +18,8 @@ function ChestKey:init(params)
     self.has_key = false
 
     self.chest_opened = false
+
+    self.portaled = false
 end
 
 function ChestKey:hasKey(target) 
