@@ -12,6 +12,7 @@ function SimonSaysState:enter(params)
     self.tiles = params.tiles
     self.portal = params.portal
     self.health = params.health
+    self.rope = params.rope
 end
 
 function SimonSaysState:render()
@@ -25,4 +26,7 @@ function SimonSaysState:render()
         distance = distance - 9
     end
     self.portal:render()
+    self.rope:render()
+    self.redBlob:render()
+    self.blueBlob:render()
 end
