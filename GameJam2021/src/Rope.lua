@@ -20,8 +20,7 @@ end
 
 
 function Rope:update(dt)
-    print("tensor number: ", self.tensor_num)
-    print("tile_Size: ", tile_size)
+
     self.length = (
         (self.redBlob.x - self.blueBlob.x) *
         (self.redBlob.x - self.blueBlob.x) +
@@ -66,17 +65,17 @@ function Rope:render()
 end
 
 function Rope:ropeSnap()
+    
     gSounds['rope_snap']:play()
     self.redBlob.x = center_x- tile_size - self.redBlob.centerX
-    self.blueBlob.x = center_x + tile_size - self.blueBlob.centerX 
+    self.blueBlob.x = center_x + tile_size - self.blueBlob.centerX
 
-    if self.redBlob.y < self.blueBlob.y then
-        center_y = (self.blueBlob.y - self.redBlob.y) / 2 + self.redBlob.y
-        self.redBlob.y = center_y - self.redBlob.centerY
-        self.blueBlob.y = center_y + self.blueBlob.centerY
-    else
-        center_y = (self.redBlob.y - self.blueBlob.y) / 2 + self.blueBlob.centerY
-        self.redBlob.y = center_y + self.redBlob.centerY
-        self.blueBlob.y = center_y - self.blueBlob.centerY
-    end
+    local slope = (self.blueBlob.y - self.redBlob.y) / (self.blueBlob.x - self.redBlob.x)
+    local b = (self.blueBlob.y - (slope * self.blueBlob.x))
+
+    local center_y_left = slope * (self.redBlob.x) + b
+    local center_y_right = slope * (self.blueBlob.x) + b
+
+    self.redBlob.y = center_y_left
+    self.blueBlob.y = center_y_right
 end
