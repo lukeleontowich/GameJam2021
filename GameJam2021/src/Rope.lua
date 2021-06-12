@@ -17,6 +17,7 @@ function Rope:init(param)
 end
 
 function Rope:ropeSnap()
+    gSounds['rope_snap']:play()
     local center_x = 0
     local center_y = 0
     --  case 1
@@ -48,7 +49,7 @@ function Rope:update(dt)
         (self.redBlob.y - self.blueBlob.y) *
         (self.redBlob.y - self.blueBlob.y))
     if self.length > self.max_length then
-        --self:ropeSnap()
+        self:ropeSnap()
     
     elseif self.length > self.tensor_length then
         self.tensor_num = 1.0 - self.length / self.max_length 
