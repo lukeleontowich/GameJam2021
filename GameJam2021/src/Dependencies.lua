@@ -6,6 +6,7 @@ require 'src/Constants'
 require 'src/StateMachine'
 
 require 'src/Blob'
+require 'src/Enemy'
 require 'src/Rope'
 require 'src/Tile'
 
@@ -24,12 +25,18 @@ gFonts = {
 gTextures = {
     ['background'] = love.graphics.newImage('graphics/Background.png'),
     ['tile'] = love.graphics.newImage('graphics/Normal_Tile.png'),
+    ['portal_tile'] = love.graphics.newImage('graphics/Portal_Tile.png'),
     ['red_blob_still'] = love.graphics.newImage('graphics/Red_Blob_Still.png'),
     ['red_blob_squishing'] = love.graphics.newImage('graphics/Red_Blob_Squish_1.png'),
     ['red_blob_squished'] = love.graphics.newImage('graphics/Red_Blob_Squish_2.png'),
     ['blue_blob_still'] = love.graphics.newImage('graphics/Blue_Blob_Still.png'),
     ['blue_blob_squishing'] = love.graphics.newImage('graphics/Blue_Blob_Squish_1.png'),
-    ['blue_blob_squished'] = love.graphics.newImage('graphics/Blue_Blob_Squish_2.png')
+    ['blue_blob_squished'] = love.graphics.newImage('graphics/Blue_Blob_Squish_2.png'),
+    ['red_enemy_still'] = love.graphics.newImage('graphics/Red_Enemy_Still.png'),
+    ['red_enemy_left'] = love.graphics.newImage('graphics/Red_Enemy_Left.png'),
+    ['red_enemy_right'] = love.graphics.newImage('graphics/Red_Enemy_Right.png'),
+    ['key'] = love.graphics.newImage('graphics/Key.png'),
+    ['chest'] = love.graphics.newImage('graphics/Chest.png')
 }
 
 gSounds = {

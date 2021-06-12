@@ -2,12 +2,18 @@ PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
     self.tiles = LevelMaker.generate(VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
+    self.enemy = Enemy({
+        x = 5,
+        y = 5,
+        color = 1
+    })
 end
 
 function PlayState:update(dt)
     self.redBlob:update(dt)
     self.blueBlob:update(dt)
     self.rope:update(dt)
+    self.enemy:update(dt)
 
     -- check for tile collisions
     for tile in pairs(self.tiles) do
@@ -31,6 +37,7 @@ function PlayState:render()
     self.rope:render()
     self.redBlob:render()
     self.blueBlob:render()
+    self.enemy:render()
     
 end
 
