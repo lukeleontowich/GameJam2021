@@ -90,6 +90,7 @@ function PlayState:render()
     for tile in pairs(self.tiles) do
         self.tiles[tile]:render()
     end
+    self.portal:render()
     self.rope:render()
     self.redBlob:render()
     self.blueBlob:render()
@@ -97,7 +98,6 @@ function PlayState:render()
         self.enemies[x]:render()
     end
     self.chest_key:render() 
-    self.portal:render()
 end
 
 function PlayState:enter(params)
