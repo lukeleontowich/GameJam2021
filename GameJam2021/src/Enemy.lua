@@ -17,7 +17,11 @@ function Enemy:init(params)
     -- 1 means it's on the left side of the screen, 2 means it's on the right
     -- (important for how we are doing collisions with wall, and which
     -- player it is attacking)
-    self.side = 1
+    if self.x < VIRTUAL_WIDTH / 2 then
+        self.side = 1
+    else
+        self.side = 2
+    end
 
     self.timer = 0
 
@@ -27,6 +31,8 @@ function Enemy:init(params)
 
     self.isDead = false
     self.exists = true
+
+    self.portaled = false
 end
 
 function Enemy:update(dt)

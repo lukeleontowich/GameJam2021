@@ -75,6 +75,7 @@ function PlayState:update(dt)
         end
     end
 
+    --  Check if chest is opened and if the blobs have the key
     if not self.chest_key:isOpened() then
         if self.chest_key:hasKey(self.blueBlob) then
             self.chest_key:openingChest(self.blueBlob)
@@ -83,9 +84,27 @@ function PlayState:update(dt)
         end
     end
 
+    --  See if the key is in the portal and if so send it
     if self.portal:collides(self.chest_key.key) and not self.chest_key.portaled then
         self.blueBlob.has_key = false
         self.redBlob.has_key = false
+    end
+
+    --  Check if an enemy is in a portal then send it
+    for enemy in pairs(self.enemies) do
+        if self.portal:collides(self.enemies[enemy]) and not self.enemies[enemy].portaled then
+            self.enemies[enemy].portaled = true
+            if self.enemies[enemy].side == 1 then
+                print("here")
+                self.enemies[enemy].side = 2 
+            elseif self.enemies[enemy].side == 2 then
+                print("shoudln't be here")
+                self.enemies[enemy].side = 1
+            end
+        end
+    end
+    for enemy in pairs(self.enemies) do
+        --print("e1 side: ", self.enemies[enemy].side)
     end
 
 end
