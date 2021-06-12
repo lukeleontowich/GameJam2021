@@ -3,14 +3,18 @@ StartState = Class{__includes = BaseState}
 function StartState:init()
     self.blueBlob = Blob({
         x = (VIRTUAL_WIDTH / 2) - 48, 
-        y = VIRTUAL_HEIGHT - 32,
+        y = VIRTUAL_HEIGHT - 40,
         color = 2
     })
     self.redBlob = Blob({
         x = (VIRTUAL_WIDTH / 2) + 16, 
-        y = VIRTUAL_HEIGHT - 32,
+        y = VIRTUAL_HEIGHT - 40,
         color = 1
     })
+    self.blueBlob.sx = 1
+    self.blueBlob.sy = 1
+    self.redBlob.sx = 1
+    self.redBlob.sy = 1
 end
 
 function StartState:update(dt) 

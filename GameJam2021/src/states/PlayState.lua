@@ -38,7 +38,11 @@ function PlayState:enter(params)
     self.redBlob = params.redBlob
     self.blueBlob = params.blueBlob
     self.blueBlob.x = VIRTUAL_WIDTH / 2 + 24
-    self.redBlob.x = VIRTUAL_WIDTH / 2 - 40   
+    self.blueBlob.sx = 0.4
+    self.blueBlob.sy = 0.4 
+    self.redBlob.x = VIRTUAL_WIDTH / 2 - 40 
+    self.redBlob.sx = 0.4
+    self.redBlob.sy = 0.4 
     self.rope = Rope({
         blueBlob = self.blueBlob,
         redBlob = self.redBlob
