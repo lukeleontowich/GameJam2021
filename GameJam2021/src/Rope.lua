@@ -14,20 +14,20 @@ function Rope:init(param)
     self.center_x = 0
     self.center_y = 0
 end
-
+--[[
 function Rope:getCenter()
     local x1, x2, y1, y2 = 0
-    if self.redBlob.x > self.blueBlob.x then
+    if self.redBlob.x > self.blueBlob.x and self.redBlob.y > self.blueBlob.y then
         x1 = self.blueBlob.x
         x2 = self.redBlob.x
     else
         x1 = self.redBlob.x
         x2 = self.blueBlob.x
     end
-    if self.redBlob.y > self.blueBlob.y then
+    --if  then
         y1 = self.blueBlob.y
         y2 = self.redBlob.y
-    else
+   -- else
         y1 = self.redBlob.y
         y2 = self.blueBlob.y
     end
@@ -36,10 +36,9 @@ function Rope:getCenter()
 
     --self.redBlob.x = 
 end
-
+]]
 function Rope:update(dt)
-    print("tensor length: ", self.tensor_length)
-    print("length: ", self.length)
+    print("printing", self.redBlob.width)
     self.length = (
         (self.redBlob.x - self.blueBlob.x) *
         (self.redBlob.x - self.blueBlob.x) +
@@ -80,9 +79,9 @@ function Rope:render()
     local color = {1.0, 1.0, 1.0, 1.0}
     love.graphics.setColor(0.7, 0.7, 0.7, 1.0)
     love.graphics.line(
-        self.redBlob.x + 8, 
-        self.redBlob.y + 8, 
-        self.blueBlob.x + 8 , 
-        self.blueBlob.y + 8)
+        self.redBlob.x + self.redBlob.width, 
+        self.redBlob.y + self.redBlob.height, 
+        self.blueBlob.x + self.blueBlob.width , 
+        self.blueBlob.y + self.blueBlob.height)
 
 end
