@@ -24,6 +24,7 @@ function Enemy:init(params)
     end
 
     self.timer = 0
+    self.portalTimer = 0
 
     self.currentAnimation = 2
     self.animationDirection = 2
@@ -37,6 +38,12 @@ end
 
 function Enemy:update(dt)
     self.timer = self.timer + dt
+    self.portalTimer = self.portalTimer + dt
+
+    if self.portalTimer > 5 then 
+        self.portaled = false
+        self.portalTimer = 0
+    end
 
     if self.timer > self.interval then
         if self.isDead then
