@@ -14,7 +14,7 @@ require 'src/Portal'
 require 'src/Chest'
 require 'src/Key'
 require 'src/Button'
-require 'src/Arrow'
+require 'src/PressureButton'
 
 -- game states
 require 'src/states/BaseState'
