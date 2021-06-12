@@ -9,6 +9,7 @@ require 'src/Blob'
 require 'src/Enemy'
 require 'src/Rope'
 require 'src/Tile'
+require 'src/ChestKey'
 
 -- game states
 require 'src/states/BaseState'
