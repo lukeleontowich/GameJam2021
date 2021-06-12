@@ -1,6 +1,10 @@
 PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
+    self.rope = Rope({
+        blueBlob = self.blueBlob,
+        redBlob = self.redBlob
+    })
 end
 
 function PlayState:update(dt)

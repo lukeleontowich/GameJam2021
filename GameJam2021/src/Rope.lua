@@ -1,6 +1,6 @@
 --  rope.lua
 
-Rope = class{__includes Entity}
+Rope = Class{__includes = Entity}
 
 function Rope:init(param) 
     self.redBlob = param.redBlob
@@ -15,5 +15,5 @@ function Rope:update(dt)
         (self.rebBlob.y - self.blueBlob.y) *
         (self.redBlob.y - self.blueBlob.y))
     
-    print("rope lenght:", length)
+    print("rope length:", self.length)
 end
