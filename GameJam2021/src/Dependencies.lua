@@ -12,6 +12,7 @@ require 'src/Tile'
 require 'src/ChestKey'
 require 'src/Portal'
 require 'src/Chest'
+require 'src/Key'
 
 -- game states
 require 'src/states/BaseState'
