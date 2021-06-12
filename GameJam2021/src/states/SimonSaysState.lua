@@ -5,7 +5,7 @@ function SimonSaysState:init()
     for i = 1, 5 do
         arrow = Arrow({
             x = math.random(VIRTUAL_WIDTH - 20),
-            y = 0 + (-20) * i,
+            y = 0 + (-30) * i,
             direction = math.random(4)
         })
         table.insert(self.arrows, arrow)
@@ -27,49 +27,47 @@ function SimonSaysState:enter(params)
 end
 
 function SimonSaysState:update(dt)
-    local currentArrow
+    local currentDirection = 0
+    local currentSound = gSounds['up_arrow']
 
     for a in pairs(self.arrows) do
         self.arrows[a]:update(dt)
-        if self.arrows[a].y > VIRTUAL_HEIGHT - 35 and self.arrows[a].y < VIRTUAL_HEIGHT - 15 then
-            currentArrow = self.arrows[a]
+        if self.arrows[a].y > VIRTUAL_HEIGHT - 40 and self.arrows[a].y < VIRTUAL_HEIGHT - 15 then
+            currentDirection = self.arrows[a].direction
         end
     end
 
     if love.keyboard.wasPressed('up') then
-        if not currentArrow == nil then
-            if currentArrow.direction == 1 then
-                gSounds['up_arrow']:play()
-            else
-                gSounds['missed_arrow']:play()
-            end
+        if currentDirection == 1 then
+            currentSound:stop()
+            currentSound = gSounds['up_arrow']
+            currentSound:play()
         else
-            gSounds['missed_arrow']:play()
+            --self:loseHeart()
         end
     elseif love.keyboard.wasPressed('down') then
-        if not currentArrow == nil then
-            if currentArrow.direction == 2 then
-                gSounds['down_arrow']:play()
-            else
-                gSounds['missed_arrow']:play()
-            end
-        
+        if currentDirection == 2 then
+            currentSound:stop()
+            currentSound = gSounds['down_arrow']
+            currentSound:play()
+        else
+            --self:loseHeart()
         end
     elseif love.keyboard.wasPressed('left') then
-        if not currentArrow == nil then
-            if currentArrow.direction == 3 then
-                gSounds['left_arrow']:play()
-            else
-                gSounds['missed_arrow']:play()
-            end
+        if currentDirection == 3 then
+            currentSound:stop()
+            currentSound = gSounds['left_arrow']
+            currentSound:play()
+        else
+            --self:loseHeart()
         end
-    else
-        if not currentArrow == nil then
-            if currentArrow.direction == 4 then
-                gSounds['right_arrow']:play()
-            else
-                gSounds['missed_arrow']:play()
-            end
+    elseif love.keyboard.wasPressed('right') then
+        if currentDirection == 4 then
+            currentSound:stop()
+            currentSound = gSounds['right_arrow']
+            currentSound:play()
+        else
+            --self:loseHeart()
         end
     end
 end
@@ -109,4 +107,20 @@ function SimonSaysState:render()
     for a in pairs(self.arrows) do
         self.arrows[a]:render()
     end
+end
+
+function SimonSaysState:loseHeart()
+    gStateMachine:change('transition', {
+        redBlob = self.redBlob,
+        blueBlob = self.blueBlob,
+        enemies = self.enemies,
+        tiles = self.tiles,
+        portal = self.portal,
+        pressure_button = self.pressure_button,
+        arrow_button = self.arrow_button,
+        chest_key = self.chest_key,
+        health = self.health - 1,
+        rope = self.rope,
+        lastState = 'simon_says'
+    })
 end
