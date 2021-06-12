@@ -136,7 +136,8 @@ function PlayState:update(dt)
             enemies = self.enemies,
             tiles = self.tiles,
             portal = self.portal,
-            health = self.health
+            health = self.health,
+            rope = self.rope
         })
     end
 
