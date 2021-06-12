@@ -15,7 +15,10 @@ function love.load()
 
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,
-        ['play'] = function() return PlayState() end
+        ['play'] = function() return PlayState() end,
+        ['simon_says'] = function() return SimonSaysState() end,
+        ['pause_state'] = function() return PauseState() end,
+        ['game_over'] = function() return GameOverState() end
     }
     gStateMachine:change('start')
 

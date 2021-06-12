@@ -19,6 +19,8 @@ require 'src/Button'
 require 'src/states/BaseState'
 require 'src/states/PlayState'
 require 'src/states/StartState'
+require 'src/states/SimonSaysState'
+require 'src/states/GameOverState'
 
 require 'src/LevelMaker'
 require 'src/EnemySpawner'
@@ -50,7 +52,13 @@ gTextures = {
     ['chest_open'] = love.graphics.newImage('graphics/Chest_Open.png'),
     ['heart'] = love.graphics.newImage('graphics/Heart.png'),
     ['pressure_button'] = love.graphics.newImage('graphics/Pressure_Button.png'),
-    ['button_base'] = love.graphics.newImage('graphics/Button_Base.png')
+    ['button_base'] = love.graphics.newImage('graphics/Button_Base.png'),
+    ['arrow_button'] = love.graphics.newImage('graphics/Arrow_Button.png'),
+    ['arrow_button_pressed'] = love.graphics.newImage('graphics/Arrow_Button_Pressed.png'),
+    ['up_arrow'] = love.graphics.newImage('graphics/Up.png'),
+    ['down_arrow'] = love.graphics.newImage('graphics/Down.png'),
+    ['left_arrow'] = love.graphics.newImage('graphics/Left.png'),
+    ['right_arrow'] = love.graphics.newImage('graphics/Right.png')
 }
 
 gSounds = {
@@ -62,6 +70,7 @@ gSounds = {
     ['chest_unlocked'] = love.audio.newSource('sounds/Unlock_Chest.wav', 'static'),
     ['portal_activate'] = love.audio.newSource('sounds/Portal_Activate.wav', 'static'),
     ['hurt'] = love.audio.newSource('sounds/Hurt.wav', 'static'),
+    ['button_push'] = love.audio.newSource('sounds/Button_Push.wav', 'static'),
 
     ['music'] = love.audio.newSource('sounds/Bubblegum.wav', 'static')
 }

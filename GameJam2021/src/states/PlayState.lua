@@ -19,6 +19,12 @@ function PlayState:init()
         type = 1 
     })
 
+    self.arrow_button = Button({
+        x = 30,
+        y = VIRTUAL_HEIGHT - 14,
+        type = 2
+    })
+
     self.health = 3
 end
 
@@ -104,6 +110,23 @@ function PlayState:update(dt)
         --print("e1 side: ", self.enemies[enemy].side)
     end
 
+    if self.arrow_button:collides(self.redBlob) or self.arrow_button:collides(self.blueBlob) then
+        if not self.arrow_button.pressed_sound_played then
+            gSounds['button_push']:play()
+            self.arrow_button.pressed_sound_played = true
+        end
+        self.arrow_button.arrow_button_pressed = true
+    
+        gStateMachine:change('simon_says', {
+            redBlob = self.redBlob,
+            blueBlob = self.blueBlob,
+            enemies = self.enemies,
+            tiles = self.tiles,
+            portal = self.portal,
+            health = self.health
+        })
+    end
+
 end
 
 function PlayState:render()
@@ -118,6 +141,7 @@ function PlayState:render()
     end
     self.portal:render()
     self.pressure_button:render()
+    self.arrow_button:render()
     self.chest_key.chest:render() 
     self.rope:render()
     self.redBlob:render()
