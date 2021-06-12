@@ -78,8 +78,8 @@ function Blob:update(dt)
         self.y = self.y + self.dy
     elseif self.y > VIRTUAL_HEIGHT - self.dy * self.pixels then
         self.y = self.y - self.dy
-
     end
+
 end
 
 function Blob:render()

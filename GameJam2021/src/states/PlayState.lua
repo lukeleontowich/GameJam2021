@@ -8,6 +8,19 @@ function PlayState:update(dt)
     self.redBlob:update(dt)
     self.blueBlob:update(dt)
     self.rope:update(dt)
+
+    -- check for tile collisions
+    for tile in pairs(self.tiles) do
+        if self.tiles[tile]:collides(self.redBlob) then
+            gSounds['collision']:play()
+        end
+    end
+
+    for tile in pairs(self.tiles) do
+        if self.tiles[tile]:collides(self.blueBlob) then
+            gSounds['collision']:play()
+        end
+    end
 end
 
 function PlayState:render()
