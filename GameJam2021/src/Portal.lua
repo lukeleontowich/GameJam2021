@@ -19,7 +19,8 @@ function Portal:collides(target)
                 self.left_x > target.x + target.width or
                 target.y > self.left_y + self.height or 
                 self.left_y > target.y + target.height) then
-                
+                    
+                    gSounds['portal_activate']:play()
                     target.portaled = true
                     target.x = self.right_x
                     target.y = self.right_y
@@ -28,6 +29,7 @@ function Portal:collides(target)
                     target.y > self.right_y + self.height or 
                     self.right_y > target.y + target.height) then
 
+                        gSounds['portal_activate']:play()
                         target.portaled = true
                         target.x = self.left_x
                         target.y = self.left_y
