@@ -14,6 +14,7 @@ require 'src/Portal'
 require 'src/Chest'
 require 'src/Key'
 require 'src/Button'
+require 'src/Arrow'
 
 -- game states
 require 'src/states/BaseState'
@@ -56,7 +57,7 @@ gTextures = {
     ['arrow_button'] = love.graphics.newImage('graphics/Arrow_Button.png'),
     ['arrow_button_pressed'] = love.graphics.newImage('graphics/Arrow_Button_Pressed.png'),
     ['up_arrow'] = love.graphics.newImage('graphics/Up.png'),
-    ['down_arrow'] = love.graphics.newImage('graphics/Down.png'),
+    ['down_arrow'] = love.graphics.newImage('graphics/down.png'),
     ['left_arrow'] = love.graphics.newImage('graphics/Left.png'),
     ['right_arrow'] = love.graphics.newImage('graphics/Right.png')
 }
@@ -71,6 +72,11 @@ gSounds = {
     ['portal_activate'] = love.audio.newSource('sounds/Portal_Activate.wav', 'static'),
     ['hurt'] = love.audio.newSource('sounds/Hurt.wav', 'static'),
     ['button_push'] = love.audio.newSource('sounds/Button_Push.wav', 'static'),
+    ['up_arrow'] = love.audio.newSource('sounds/Up_Arrow.wav', 'static'),
+    ['down_arrow'] = love.audio.newSource('sounds/Down_Arrow.wav', 'static'),
+    ['left_arrow'] = love.audio.newSource('sounds/Left_Arrow.wav', 'static'),
+    ['right_arrow'] = love.audio.newSource('sounds/Right_Arrow.wav', 'static'),
+    ['missed_arrow'] = love.audio.newSource('sounds/Wrong_Arrow.wav', 'static'),
 
     ['music'] = love.audio.newSource('sounds/Bubblegum.wav', 'static')
 }

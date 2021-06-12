@@ -34,6 +34,7 @@ function Enemy:init(params)
     self.exists = true
 
     self.portaled = false
+
 end
 
 function Enemy:update(dt)

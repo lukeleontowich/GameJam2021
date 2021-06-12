@@ -123,6 +123,9 @@ function PlayState:update(dt)
             enemies = self.enemies,
             tiles = self.tiles,
             portal = self.portal,
+            pressure_button = self.pressure_button,
+            arrow_button = self.arrow_button,
+            chest_key = self.chest_key,
             health = self.health,
             rope = self.rope
         })
