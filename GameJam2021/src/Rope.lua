@@ -10,7 +10,7 @@ function Rope:init(param)
     self.redBlob = param.redBlob
     self.blueBlob = param.blueBlob
     self.max_length = (VIRTUAL_WIDTH / 1.5) * (VIRTUAL_WIDTH / 1.5)
-    --  80% the max_lenth
+    --  40% the max_lenth
     self.tensor_length = self.max_length * 0.4
     self.tensor_num  = 1.0
     self.original_speed = self.redBlob.dx

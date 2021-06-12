@@ -1,5 +1,5 @@
 --  main.lua
-love.graphics.setDefaultFilter('nearest', 'nearest')
+--love.graphics.setDefaultFilter('nearest', 'nearest')
 require 'src/Dependencies'
 
 function love.load()
