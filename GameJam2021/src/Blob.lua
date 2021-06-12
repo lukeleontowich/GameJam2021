@@ -27,6 +27,8 @@ function Blob:init(params)
 
     self.centerX = self.pixels * self.sx / 2
     self.centerY = self.pixels * self.sy / 2
+
+    self.has_key = false
 end
 
 function Blob:update(dt)

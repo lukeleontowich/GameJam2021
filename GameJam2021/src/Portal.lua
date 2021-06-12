@@ -25,6 +25,7 @@ function Portal:collides(target)
                     target.portaled = true
                     target.x = self.right_x
                     target.y = self.right_y
+                    return true
         elseif not (target.x > self.right_x + self.width or
                     self.right_x > target.x + target.width or
                     target.y > self.right_y + self.height or 
@@ -39,8 +40,10 @@ function Portal:collides(target)
                         target.y = self.left_y
                         print("target.x after: ", target.x)
                         print("target.y after: ", target.y)
+                        return true
         end
     end
+    return false
 end
 
 function Portal:render()

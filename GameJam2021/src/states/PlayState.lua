@@ -79,7 +79,10 @@ function PlayState:update(dt)
         end
     end
 
-    self.portal:collides(self.chest_key.key)
+    if self.portal:collides(self.chest_key.key) and not self.chest_key.portaled then
+        self.blueBlob.has_key = false
+        self.redBlob.has_key = false
+    end
 
 end
 

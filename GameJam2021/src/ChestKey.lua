@@ -25,7 +25,7 @@ function ChestKey:init(params)
 end
 
 function ChestKey:hasKey(target) 
-    if self.has_key == true then
+    if target.has_key == true then
         self.key.x = target.x 
         self.key.y = target.y
         return true 
@@ -34,10 +34,10 @@ function ChestKey:hasKey(target)
             self.key.x > target.x + target.width or
             target.y > self.key.y + self.key.height or 
             self.key.y > target.y + target.height) then
-        if not self.has_key then
+        if not target.has_key then
             gSounds['pick_up_key']:play()
         end
-        self.has_key = true
+        target.has_key = true
         return true  
     else
         return false
@@ -56,8 +56,8 @@ function ChestKey:openingChest(target)
     end
 end
 
-function ChestKey:keyInChest()
-    if has_key == false then
+function ChestKey:keyInChest(target)
+    if target.has_key == false then
         return false
     end
     return not (self.key.x > self.chest.x + self.chest_width or
