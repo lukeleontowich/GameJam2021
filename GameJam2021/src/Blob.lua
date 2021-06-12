@@ -22,8 +22,11 @@ function Blob:init(params)
     self.timer = 0
     self.interval = 0.4
 
-    self.width = self.pixels * self.sx / 2
-    self.height = self.pixels * self.sy / 2
+    self.width = self.pixels * self.sx
+    self.height = self.pixels * self.sy
+
+    self.centerX = self.pixels * self.sx / 2
+    self.centerY = self.pixels * self.sy / 2
 end
 
 function Blob:update(dt)
