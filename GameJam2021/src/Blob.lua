@@ -29,6 +29,8 @@ function Blob:init(params)
     self.centerY = self.pixels * self.sy / 2
 
     self.has_key = false
+
+    self.frozen = false
 end
 
 function Blob:update(dt)
@@ -51,25 +53,27 @@ function Blob:update(dt)
     
     end
 
-    if self.color == 1 then
-        if love.keyboard.isDown('d') then
-            self.x = self.x + self.dx
-        elseif love.keyboard.isDown('a') then
-            self.x = self.x - self.dx
-        elseif love.keyboard.isDown('w') then
-            self.y = self.y - self.dy 
-        elseif love.keyboard.isDown('s') then
-            self.y = self.y + self.dy
-        end
-    elseif self.color == 2 then
-        if love.keyboard.isDown('right') then
-            self.x = self.x + self.dx
-        elseif love.keyboard.isDown('left') then
-            self.x = self.x - self.dx
-        elseif love.keyboard.isDown('up') then
-            self.y = self.y - self.dy 
-        elseif love.keyboard.isDown('down') then
-            self.y = self.y + self.dy
+    if not self.frozen then
+        if self.color == 1 then
+            if love.keyboard.isDown('d') then
+                self.x = self.x + self.dx
+            elseif love.keyboard.isDown('a') then
+                self.x = self.x - self.dx
+            elseif love.keyboard.isDown('w') then
+                self.y = self.y - self.dy 
+            elseif love.keyboard.isDown('s') then
+                self.y = self.y + self.dy
+            end
+        elseif self.color == 2 then
+            if love.keyboard.isDown('right') then
+                self.x = self.x + self.dx
+            elseif love.keyboard.isDown('left') then
+                self.x = self.x - self.dx
+            elseif love.keyboard.isDown('up') then
+                self.y = self.y - self.dy 
+            elseif love.keyboard.isDown('down') then
+                self.y = self.y + self.dy
+            end
         end
     end
 

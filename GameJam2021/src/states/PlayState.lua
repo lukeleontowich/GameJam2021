@@ -114,9 +114,17 @@ function PlayState:update(dt)
         if not self.arrow_button.pressed_sound_played then
             gSounds['button_push']:play()
             self.arrow_button.pressed_sound_played = true
-            self.arrow_button:simonSays()
         end
         self.arrow_button.arrow_button_pressed = true
+    
+        gStateMachine:change('simon_says', {
+            redBlob = self.redBlob,
+            blueBlob = self.blueBlob,
+            enemies = self.enemies,
+            tiles = self.tiles,
+            portal = self.portal,
+            health = self.health
+        })
     end
 
 end
