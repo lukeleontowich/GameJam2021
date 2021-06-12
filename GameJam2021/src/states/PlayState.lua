@@ -2,7 +2,6 @@ PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
     self.tiles = LevelMaker.generate(VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
-    self.enemies = EnemySpawner.generate()
     self.chest_key = ChestKey( 
         {chest_x = VIRTUAL_WIDTH / 4,
         chest_y = VIRTUAL_HEIGHT / 4,
@@ -89,4 +88,5 @@ function PlayState:enter(params)
         blueBlob = self.blueBlob,
         redBlob = self.redBlob
     })
+    self.enemies = EnemySpawner.generate(self.redBlob, self.blueBlob)
 end

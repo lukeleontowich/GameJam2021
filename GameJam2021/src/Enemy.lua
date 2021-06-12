@@ -5,8 +5,19 @@ function Enemy:init(params)
     self.y = params.y
     self.color = params.color
 
+    self.dx = 0.1
+    self.dy = 0.1
+
     self.width = 16
     self.height = 16
+
+    self.redBlob = params.redBlob
+    self.blueBlob = params.blueBlob
+
+    -- 1 means it's on the left side of the screen, 2 means it's on the right
+    -- (important for how we are doing collisions with wall, and which
+    -- player it is attacking)
+    self.side = 1
 
     self.timer = 0
 
@@ -39,6 +50,21 @@ function Enemy:update(dt)
             end
         end
     
+    end
+
+    --add enemy movement (AI)
+    if self.side == 1 then
+        if self.redBlob.x > self.x then
+            self.x = self.x + self.dx
+        elseif self.redBlob.x < self.x then
+            self.x = self.x - self.dx
+        end
+        if self.redBlob.y < self.y then
+            self.y = self.y - self.dy 
+        elseif self.redBlob.y > self.y then
+            self.y = self.y + self.dy
+        end
+    else
     end
 end
 
