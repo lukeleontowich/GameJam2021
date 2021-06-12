@@ -66,6 +66,7 @@ function Rope:render()
 end
 
 function Rope:ropeSnap()
+    gSounds['rope_snap']:play()
     self.redBlob.x = center_x- tile_size - self.redBlob.centerX
     self.blueBlob.x = center_x + tile_size - self.blueBlob.centerX 
 end
