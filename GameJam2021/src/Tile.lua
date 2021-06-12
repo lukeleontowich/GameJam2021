@@ -1,8 +1,8 @@
 Tile = Class{}
 
-function Tile:init(params)
-    self.x = params.x
-    self.y = params.y
+function Tile:init(x, y)
+    self.x = x
+    self.y = y
 end
 
 --need to add tile collision
