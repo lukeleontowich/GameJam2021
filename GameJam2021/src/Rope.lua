@@ -70,10 +70,10 @@ function Rope:render()
     local color = {1.0, 1.0, 1.0, 1.0}
     love.graphics.setColor(1- self.tensor_num, self.tensor_num, 0.0, 1.0)
     love.graphics.line(
-        self.redBlob.x + self.redBlob.width, 
-        self.redBlob.y + self.redBlob.height, 
-        self.blueBlob.x + self.blueBlob.width , 
-        self.blueBlob.y + self.blueBlob.height
+        self.redBlob.x + self.redBlob.centerX, 
+        self.redBlob.y + self.redBlob.centerY, 
+        self.blueBlob.x + self.blueBlob.centerX, 
+        self.blueBlob.y + self.blueBlob.centerY
     )
     love.graphics.setColor(1.0, 1.0, 1.0, 1.0)
 
