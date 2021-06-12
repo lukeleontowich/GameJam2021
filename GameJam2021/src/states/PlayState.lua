@@ -3,6 +3,12 @@ PlayState = Class{__includes = BaseState}
 function PlayState:init()
     self.tiles = LevelMaker.generate(VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
     self.enemies = EnemySpawner.generate()
+    self.chest_key = ChestKey( 
+        {chest_x = VIRTUAL_WIDTH / 4,
+        chest_y = VIRTUAL_HEIGHT / 4,
+        key_x = 3 * VIRTUAL_WIDTH / 4,
+        key_y = 3 * VIRTUAL_HEIGHT / 4}
+    )
 end
 
 function PlayState:update(dt)
@@ -40,6 +46,15 @@ function PlayState:update(dt)
             table.remove(self.enemies, enemy)
         end
     end
+    if not self.chest_key:isOpened() then
+        if self.chest_key:hasKey(self.blueBlob) then
+            self.chest_key:openingChest(self.blueBlob)
+        elseif self.chest_key:hasKey(self.redBlob) then
+            self.chest_key:openingChest(self.redBlob)
+        end
+    end
+
+
 end
 
 function PlayState:render()
@@ -52,7 +67,8 @@ function PlayState:render()
     self.blueBlob:render()
     for x in pairs(self.enemies) do
         self.enemies[x]:render()
-    end 
+    end
+    self.chest_key:render() 
 end
 
 function PlayState:enter(params)
