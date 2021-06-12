@@ -20,7 +20,8 @@ end
 
 
 function Rope:update(dt)
-
+    local left_snap_velocity = 0
+    local right_snap_velocity = 0
     self.length = (
         (self.redBlob.x - self.blueBlob.x) *
         (self.redBlob.x - self.blueBlob.x) +
@@ -29,7 +30,7 @@ function Rope:update(dt)
 
     if self.length > self.tensor_length then
         if self.tensor_num < 0.1 then
-            self:ropeSnap()
+            left_snap_velocity, right_snap_velocity = self:ropeSnap()
             self.tensor_num = 1.0
             self.redBlob.dx = self.original_speed 
             self.redBlob.dy = self.original_speed 
@@ -49,6 +50,7 @@ function Rope:update(dt)
         self.blueBlob.dx = self.original_speed
         self.blueBlob.dy = self.original_speed
     end
+    return left_snap_velocity, right_snap_velocity
 end
 
 function Rope:render()
@@ -67,6 +69,11 @@ end
 function Rope:ropeSnap()
     
     gSounds['rope_snap']:play()
+
+    local orig_red_x = self.redBlob.x
+    local orig_blue_x = self.blueBlob.x 
+
+    --  setting blob new coordinates
     self.redBlob.x = center_x- tile_size - self.redBlob.centerX
     self.blueBlob.x = center_x + tile_size - self.blueBlob.centerX
 
@@ -76,6 +83,31 @@ function Rope:ropeSnap()
     local center_y_left = slope * (self.redBlob.x) + b
     local center_y_right = slope * (self.blueBlob.x) + b
 
+    --  velocities  adjust this ---------------||  (if you want different max)
+    --                                          |
+    local velocity_max = center_x * center_x / 1.5
+    
+    local velocity_left = (
+        (center_x - orig_red_x) * (center_x - orig_red_x) +
+        (center_y_left - self.redBlob.y) * (center_y_left - self.redBlob.y)
+    )
+    local velocity_right = (
+        (orig_blue_x - center_x) * (orig_blue_x - center_x) +
+        (self.blueBlob.y - center_y_right) * (self.blueBlob.y - center_y_right)
+    )
+
+    local velocity_left_ratio = velocity_left / velocity_max
+    local velocity_right_ratio = velocity_right / velocity_max
+
+    if (velocity_left_ratio > 1.0) then
+        velocity_left_ratio = 1.0
+    end
+    if (velocity_right_ratio > 1.0) then
+        velocity_right_ratio = 1.0
+    end
+
     self.redBlob.y = center_y_left
     self.blueBlob.y = center_y_right
+
+    return velocity_left_ratio, velocity_right_ratio
 end
