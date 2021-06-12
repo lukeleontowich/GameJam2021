@@ -3,6 +3,8 @@
 ChestKey = Class{}
 
 function ChestKey:init(params)
+    self.chest = params.chest
+
     self.chest_x = params.chest_x 
     self.chest_y = params.chest_y
 
@@ -43,10 +45,10 @@ function ChestKey:hasKey(target)
 end
 
 function ChestKey:openingChest(target)
-    if not (target.x > self.chest_x + self.chest_width or
-                self.chest_x > target.x + target.width or 
-                target.y > self.chest_y + self.chest_height or 
-                self.chest_y > target.y + target.height) then
+    if not (target.x > self.chest.x + self.chest_width or
+                self.chest.x > target.x + target.width or 
+                target.y > self.chest.y + self.chest.height or 
+                self.chest.y > target.y + target.height) then
                 if not self.chest_opened then
                     gSounds['chest_unlocked']:play()
                 end
@@ -58,15 +60,15 @@ function ChestKey:keyInChest()
     if has_key == false then
         return false
     end
-    return not (self.key_x > self.chest_x + self.chest_width or
-                self.chest_x > self.key_x + self.key_width or 
-                self.key_y > self.chest_y + self.chest_height or 
-                self.chest_y > self.key_y + self.key_height)
+    return not (self.key_x > self.chest.x + self.chest_width or
+                self.chest.x > self.key_x + self.key_width or 
+                self.key_y > self.chest.y + self.chest_height or 
+                self.chest.y > self.key_y + self.key_height)
 end
 
 function ChestKey:render()
     if not chest_opened then
-        love.graphics.draw(gTextures['chest'], self.chest_x, self.chest_y)
+        love.graphics.draw(gTextures['chest'], self.chest.x, self.chest.y)
         love.graphics.draw(gTextures['key'], self.key_x, self.key_y)
     end
 end

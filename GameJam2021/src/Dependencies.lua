@@ -10,6 +10,8 @@ require 'src/Enemy'
 require 'src/Rope'
 require 'src/Tile'
 require 'src/ChestKey'
+require 'src/Portal'
+require 'src/Chest'
 
 -- game states
 require 'src/states/BaseState'

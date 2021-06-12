@@ -38,4 +38,4 @@ end
 function Portal:render()
     love.graphics.draw(gTextures['portal_tile'], self.left_x, self.left_y)
     love.graphics.draw(gTextures['portal_tile'], self.right_x, self.right_y)
-)
+end
