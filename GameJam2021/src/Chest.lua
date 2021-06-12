@@ -9,3 +9,6 @@ function Chest:init(params)
     self.width = 16
     self.height = 16
 end
+
+--function Chest:render()
+  --  love.graphics.draw(gTextures[''])
