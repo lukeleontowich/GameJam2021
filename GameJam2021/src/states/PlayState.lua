@@ -36,6 +36,9 @@ function PlayState:update(dt)
         if self.enemies[enemy]:collides(self.redBlob) and not self.enemies[enemy].isDead then
             gSounds['enemy_death']:play()
             self.enemies[enemy].isDead = true
+            self.enemies[enemy].timer = 0
+        elseif self.enemies[enemy]:hurt(self.redBlob) then
+            gSounds['hurt']:play()
         end
     end
 
@@ -44,6 +47,8 @@ function PlayState:update(dt)
             gSounds['enemy_death']:play()
             self.enemies[enemy].isDead = true
             self.enemies[enemy].timer = 0
+        elseif self.enemies[enemy]:hurt(self.blueBlob) then
+            gSounds['hurt']:play()
         end
         if not self.enemies[enemy].exists then
             table.remove(self.enemies, enemy)

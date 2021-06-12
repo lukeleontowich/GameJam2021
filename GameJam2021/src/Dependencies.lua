@@ -53,6 +53,7 @@ gSounds = {
     ['pick_up_key'] = love.audio.newSource('sounds/Key.wav', 'static'),
     ['chest_unlocked'] = love.audio.newSource('sounds/Unlock_Chest.wav', 'static'),
     ['portal_activate'] = love.audio.newSource('sounds/Portal_Activate.wav', 'static'),
+    ['hurt'] = love.audio.newSource('sounds/Hurt.wav', 'static'),
 
     ['music'] = love.audio.newSource('sounds/Bubblegum.wav', 'static')
 }
