@@ -13,6 +13,8 @@ function TransitionState:enter(params)
     self.level = params.level
     self.level_cntr = params.level_cntr
     self.lastState = params.lastState
+    self.level_timer = params.level_timer
+    self.game_timer = params.game_timer
 end
 
 function TransitionState:update(dt)
@@ -32,7 +34,9 @@ function TransitionState:update(dt)
                 arrow_button = self.arrow_button,
                 chest_key = self.chest_key,
                 health = self.health,
-                rope = self.rope
+                rope = self.rope,
+                level_timer = self.level_timer,
+                game_timer = self.game_timer
             })
         else
             gStateMachine:change('play', {
@@ -44,6 +48,8 @@ function TransitionState:update(dt)
                 level = self.level,
                 rope = self.rope,
                 level_cntr = self.level_cntr,
+                level_timer = self.level_timer,
+                game_timer = self.game_timer,
                 lastState = 'transition'
             })
         end

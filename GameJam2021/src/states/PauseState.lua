@@ -12,6 +12,8 @@ function PauseState:enter(params)
     self.level = params.level
     self.level_cntr = params.level_cntr
     self.rope = params.rope
+    self.level_timer = params.level_timer
+    self.game_timer = params.game_timer
 end
 
 function PauseState:render() 
@@ -37,7 +39,9 @@ function PauseState:update(dt)
             rope = self.rope,
             level = self.level,
             level_cntr = self.level_cntr,
-            lastState = 'pause'
+            lastState = 'pause',
+            level_timer = self.level_timer,
+            game_timer = self.game_timer
         }) 
     end
 end

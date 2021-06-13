@@ -24,6 +24,7 @@ function PlayState:update(dt)
     --  update the timer
     if not self.level_over then
         self.level_timer = self.level_timer + dt
+        self.game_timer = self.game_timer + dt
     end
 
     --  Check if escape is pressed
@@ -226,7 +227,7 @@ function PlayState:render()
         love.graphics.setColor(0.0, 0.0, 0.0, 1.0)
         love.graphics.printf("YOU WIN!",  1, VIRTUAL_HEIGHT / 2 - 50 + 1, VIRTUAL_WIDTH, 'center')
         love.graphics.setFont(gFonts['small'])
-        local timer_display = 'Time: ' .. math.floor(self.level_timer)
+        local timer_display = 'Time: ' .. math.floor(self.game_timer)
         love.graphics.printf(timer_display, 1, VIRTUAL_HEIGHT / 2 + 1, VIRTUAL_WIDTH, 'center')
         love.graphics.setColor(1.0, 1.0, 1.0, 1.0)
     end
@@ -253,6 +254,8 @@ function PlayState:enter(params)
     self.redBlob.sy = 0.4 
     if params.lastState == 'transition' or params.lastState == 'pause' then
         self.rope = params.rope
+        self.level_timer = params.level_timer
+        self.game_timer = params.game_timer
     else
         self.rope = Rope({
             blueBlob = self.blueBlob,
@@ -277,6 +280,7 @@ end
 
 function PlayState:nextLevel()
     if love.keyboard.isDown('return') then
+        self.level_timer = 0
         if self.level_cntr >= #self.levels then
             self.game_over = true
         else
@@ -301,6 +305,8 @@ function PlayState:loseHeart()
         rope = self.rope,
         level = self.level,
         level_cntr = self.level_cntr,
+        level_timer = self.level_timer,
+        game_timer = self.game_timer,
         lastState = 'play'
     })
 end
@@ -315,7 +321,9 @@ function PlayState:pause()
             health = self.health - 1,
             rope = self.rope,
             level = self.level,
-            level_cntr = self.level_cntr
+            level_cntr = self.level_cntr,
+            game_timer = self.game_timer,
+            level_timer = self.level_timer
         })
     end
 end
