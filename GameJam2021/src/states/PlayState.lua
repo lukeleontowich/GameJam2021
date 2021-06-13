@@ -13,12 +13,18 @@ function PlayState:init()
 ]]
     self.level_over = false
     self.game_over = false
+    self.level_timer = 0
+    self.game_timer = 0
 end
 
 ------------------------------------------------------
 ---  UPDATE  -----------------------------------------
 ------------------------------------------------------
 function PlayState:update(dt)
+    if not self.level_over then
+        self.level_timer = self.level_timer + dt
+    end
+
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
     end
@@ -242,11 +248,23 @@ function PlayState:render()
         love.graphics.setFont(gFonts['title'])
         love.graphics.setColor(0.0, 0.0, 0.0, 1.0)
         love.graphics.printf("YOU WIN!",  1, VIRTUAL_HEIGHT / 2 - 50 + 1, VIRTUAL_WIDTH, 'center')
+        love.graphics.setFont(gFonts['small'])
+        local timer_display = 'Time: ' .. math.floor(self.level_timer)
+        love.graphics.printf(timer_display, 1, VIRTUAL_HEIGHT / 2 + 1, VIRTUAL_WIDTH, 'center')
         love.graphics.setColor(1.0, 1.0, 1.0, 1.0)
     end
     
+    --  diplay timers
+     -- Print a counter clock
+  love.graphics.setFont(gFonts['small'])
+  local timer_display = 'Time: ' .. math.floor(self.level_timer)
+  love.graphics.printf(timer_display, 1, 1, 100, 'left')
 end
 
+
+-----------------------------------------------------------------
+---  ENTER  -----------------------------------------------------
+-----------------------------------------------------------------
 function PlayState:enter(params)
     self.redBlob = params.redBlob
     self.blueBlob = params.blueBlob
