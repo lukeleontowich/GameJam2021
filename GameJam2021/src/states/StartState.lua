@@ -34,7 +34,7 @@ function StartState:update(dt)
                 blueBlob = self.blueBlob
             }) 
         else
-
+            gStateMachine:change('instruction') 
         end   
     end
 end

@@ -15,6 +15,7 @@ function love.load()
 
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,
+        ['instruction'] = function() return InstructionState() end,
         ['play'] = function() return PlayState() end,
         ['simon_says'] = function() return SimonSaysState() end,
         ['pause'] = function() return PauseState() end,
@@ -40,10 +41,6 @@ function love.update(dt)
 end
 
 function love.keypressed(key)
-    if key == 'escape' then
-        love.event.quit()
-    end
-
     love.keyboard.keysPressed[key] = true
 end
 

@@ -21,6 +21,7 @@ require 'src/Levels'
 
 -- game states
 require 'src/states/BaseState'
+require 'src/states/InstructionState'
 require 'src/states/PlayState'
 require 'src/states/StartState'
 require 'src/states/SimonSaysState'
@@ -33,7 +34,8 @@ require 'src/EnemySpawner'
 
 gFonts = {
     ['title'] = love.graphics.newFont('fonts/Title.ttf', 32),
-    ['menu'] = love.graphics.newFont('fonts/Title.ttf', 12)
+    ['menu'] = love.graphics.newFont('fonts/Title.ttf', 12),
+    ['small'] = love.graphics.newFont('fonts/Arial.ttf', 7)
 }
 
 gTextures = {
@@ -64,7 +66,8 @@ gTextures = {
     ['up_arrow'] = love.graphics.newImage('graphics/Up.png'),
     ['down_arrow'] = love.graphics.newImage('graphics/down.png'),
     ['left_arrow'] = love.graphics.newImage('graphics/Left.png'),
-    ['right_arrow'] = love.graphics.newImage('graphics/Right.png')
+    ['right_arrow'] = love.graphics.newImage('graphics/Right.png'),
+    ['instruction_background'] = love.graphics.newImage('graphics/Instruction_Background.png')
 }
 
 gSounds = {
