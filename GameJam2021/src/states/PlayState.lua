@@ -13,8 +13,12 @@ function PlayState:init()
 ]]
     self.health = 3
     self.level_over = false
+    self.game_over = false
 end
 
+------------------------------------------------------
+---  UPDATE  -----------------------------------------
+------------------------------------------------------
 function PlayState:update(dt)
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
@@ -212,6 +216,28 @@ function PlayState:render()
     for x in pairs(self.level.enemies) do
         self.level.enemies[x]:render()
     end
+
+    if self.level_over  and not self.game_over then
+        love.graphics.draw(gTextures['instruction_background'], 
+        VIRTUAL_WIDTH / 2 - (gTextures['instruction_background']:getWidth() / 2),
+        VIRTUAL_HEIGHT / 2 - (gTextures['instruction_background']:getHeight() / 2))
+        love.graphics.setFont(gFonts['small'])
+        love.graphics.setColor(0.0, 0.0, 0.0, 1.0)
+        love.graphics.printf("LEVEL COMPLETE!",  1, VIRTUAL_HEIGHT / 2 - 50 + 1, VIRTUAL_WIDTH, 'center')
+        love.graphics.printf('PRESS ENTER TO CONTINUE', 
+                            1, VIRTUAL_HEIGHT / 2 - 40 + 1, VIRTUAL_WIDTH, 'center')
+        love.graphics.setColor(1.0, 1.0, 1.0, 1.0)
+    end
+    if self.game_over then
+        love.graphics.draw(gTextures['instruction_background'], 
+        VIRTUAL_WIDTH / 2 - (gTextures['instruction_background']:getWidth() / 2),
+        VIRTUAL_HEIGHT / 2 - (gTextures['instruction_background']:getHeight() / 2))
+        love.graphics.setFont(gFonts['small'])
+        love.graphics.setColor(0.0, 0.0, 0.0, 1.0)
+        love.graphics.printf("YOU WIN!",  1, VIRTUAL_HEIGHT / 2 - 50 + 1, VIRTUAL_WIDTH, 'center')
+        love.graphics.setColor(1.0, 1.0, 1.0, 1.0)
+    end
+    
 end
 
 function PlayState:enter(params)
@@ -360,11 +386,8 @@ function PlayState:enter(params)
     }}
     
     
-    if params.lastState == 'transition' then
-        self.level = params.level
-    else
-        self.level = self.levels[1]
-    end
+
+    self.level = self.levels[1]
     self.level_cntr = 1
     --self.enemies = self.levels.enemies
 
@@ -373,7 +396,7 @@ end
 function PlayState:nextLevel()
     if love.keyboard.isDown('return') then
         if self.level_cntr >= #self.levels then
-            print("GAME OVER")
+            self.game_over = true
         else
             self.level_cntr = self.level_cntr + 1
             self.health = 3
