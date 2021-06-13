@@ -16,6 +16,9 @@ function PlayState:init()
 end
 
 function PlayState:update(dt)
+    if love.keyboard.wasPressed('escape') then
+        love.event.quit()
+    end
     --  Update the Blobs
     self.redBlob:update(dt)
     self.blueBlob:update(dt)
@@ -42,7 +45,7 @@ function PlayState:update(dt)
             self.level.enemies[enemy].timer = 0
         elseif self.level.enemies[enemy]:hurt(self.redBlob) then
             gSounds['hurt']:play()
-            self.health = self.health - 1
+            self:loseHeart()
         end
     end
 
@@ -53,7 +56,7 @@ function PlayState:update(dt)
             self.level.enemies[enemy].timer = 0
         elseif self.level.enemies[enemy]:hurt(self.blueBlob) then
             gSounds['hurt']:play()
-            self.health = self.health - 1
+            self:loseHeart()
         end
         if not self.level.enemies[enemy].exists then
             table.remove(self.level.enemies, enemy)
@@ -103,7 +106,7 @@ function PlayState:update(dt)
                     self.level.enemies[enemy].side = 2 
                     print("enemy side:", self.level.enemies[enemy].side)
                 elseif self.level.enemies[enemy].side == 2 then
-                    print("shoudln't be here")
+                    print("shouldn't be here")
                     self.level.enemies[enemy].side = 1
                 end
             end
@@ -377,4 +380,21 @@ function PlayState:nextLevel()
             self.redBlob.has_key = false
         end
     end
+<<<<<<< HEAD
 end
+=======
+
+end
+
+function PlayState:loseHeart()
+    gStateMachine:change('transition', {
+        redBlob = self.redBlob,
+        blueBlob = self.blueBlob,
+        enemies = self.enemies,
+        tiles = self.tiles,
+        health = self.health - 1,
+        rope = self.rope,
+        lastState = 'play'
+    })
+end
+>>>>>>> c5000831db86b7153c9bae67b0ac6da61770a64e

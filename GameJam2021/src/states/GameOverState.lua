@@ -16,6 +16,12 @@ function GameOverState:enter(params)
     self.rope = params.rope
 end
 
+function GameOverState:update(dt)
+    if love.keyboard.wasPressed('escape') then
+        love.event.quit()
+    end
+end
+
 function GameOverState:render()
     love.graphics.draw(gTextures['background'], 0, 0)
     for tile in pairs(self.tiles) do
