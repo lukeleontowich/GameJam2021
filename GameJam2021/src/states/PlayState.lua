@@ -21,13 +21,19 @@ end
 ---  UPDATE  -----------------------------------------
 ------------------------------------------------------
 function PlayState:update(dt)
+    --  update the timer
     if not self.level_over then
         self.level_timer = self.level_timer + dt
     end
 
+    --  Check if escape is pressed
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
     end
+
+    --  Check for a pause in the game
+    self:pause()
+
     --  Update the Blobs
     self.redBlob:update(dt)
     self.blueBlob:update(dt)
@@ -283,7 +289,7 @@ function PlayState:enter(params)
     
     self.levels = LevelMaker.generateLevels(self.redBlob, self.blueBlob)
     
-    if params.lastState == 'transition' then
+    if params.lastState == 'transition' or params.lastState == 'pause' then
         self.level = params.level
         self.level_cntr = params.level_cntr
     else
@@ -322,4 +328,19 @@ function PlayState:loseHeart()
         level_cntr = self.level_cntr,
         lastState = 'play'
     })
+end
+
+function PlayState:pause()
+    if love.keyboard.isDown('p') then
+        gStateMachine:change('pause', {
+            redBlob = self.redBlob,
+            blueBlob = self.blueBlob,
+            enemies = self.enemies,
+            tiles = self.tiles,
+            health = self.health - 1,
+            rope = self.rope,
+            level = self.level,
+            level_cntr = self.level_cntr
+        })
+    end
 end
