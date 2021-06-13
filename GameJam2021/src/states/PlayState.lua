@@ -380,11 +380,8 @@ function PlayState:nextLevel()
             self.redBlob.has_key = false
         end
     end
-<<<<<<< HEAD
 end
-=======
 
-end
 
 function PlayState:loseHeart()
     gStateMachine:change('transition', {
@@ -397,4 +394,3 @@ function PlayState:loseHeart()
         lastState = 'play'
     })
 end
->>>>>>> c5000831db86b7153c9bae67b0ac6da61770a64e
