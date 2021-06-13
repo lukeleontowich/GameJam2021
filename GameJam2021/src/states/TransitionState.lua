@@ -18,6 +18,10 @@ function TransitionState:enter(params)
 end
 
 function TransitionState:update(dt)
+    if love.keyboard.wasPressed('escape') then
+        love.event.quit()
+    end
+    
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
         if self.lastState == 'simon_says' then
             gStateMachine:change('simon_says', {

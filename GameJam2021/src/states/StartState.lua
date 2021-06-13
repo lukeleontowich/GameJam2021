@@ -19,7 +19,11 @@ function StartState:init()
     self.redBlob.sy = 1
 end
 
-function StartState:update(dt) 
+function StartState:update(dt)
+    if love.keyboard.wasPressed('escape') then
+        love.event.quit()
+    end
+    
     -- toggle highlighted option if we press an arrow key up or down
     if love.keyboard.wasPressed('up') or love.keyboard.wasPressed('down') then
         highlighted = highlighted == 1 and 2 or 1

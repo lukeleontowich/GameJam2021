@@ -27,6 +27,10 @@ function SimonSaysState:enter(params)
 end
 
 function SimonSaysState:update(dt)
+    if love.keyboard.wasPressed('escape') then
+        love.event.quit()
+    end
+    
     local currentDirection = 0
     local currentSound = gSounds['up_arrow']
 
