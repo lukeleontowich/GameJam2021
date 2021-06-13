@@ -3,6 +3,8 @@ Blob = Class{}
 function Blob:init(params)
     self.x = params.x
     self.y = params.y
+    self.originalX = params.x
+    self.originalY = params.y
 
     --  1 is red 2 is blue
     self.color = params.color

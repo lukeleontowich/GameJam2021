@@ -232,6 +232,10 @@ function PlayState:enter(params)
 end
 
 function PlayState:nextLevel()
+    self.redBlob.x = self.redBlob.originalX
+    self.redBlob.y = self.redBlob.originalY
+    self.blueBlob.x = self.blueBlob.originalX
+    self.blueBlob.y = self.blueBlob.originalY
     if love.keyboard.isDown('return') then
         self.level_timer = 0
         --  resest blob positions
@@ -304,6 +308,10 @@ function PlayState:enemyCollision(target)
                 self.level.enemies[s].x = self.level.enemies[s].originalX
                 self.level.enemies[s].y = self.level.enemies[s].originalY
             end
+            self.redBlob.x = self.redBlob.originalX
+            self.redBlob.y = self.redBlob.originalY
+            self.blueBlob.x = self.blueBlob.originalX
+            self.blueBlob.y = self.blueBlob.originalY
         end
     end
 end
