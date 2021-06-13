@@ -296,6 +296,9 @@ function PlayState:enemyCollision(target)
                 self.level.enemies[s].y = self.level.enemies[s].originalY
             end
         end
+    end
+end
+
 function PlayState:pause()
     if love.keyboard.isDown('p') then
         gStateMachine:change('pause', {
