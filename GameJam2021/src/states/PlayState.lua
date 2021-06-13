@@ -124,39 +124,10 @@ function PlayState:update(dt)
             if self.level.portal:collides(self.level.enemies[enemy]) then
                 self.level.enemies[enemy].portaled = true
                 self.level.enemies[enemy].timer = 0
-                --if self.level.enemies[enemy].side == 1 then
-                    --print("here")
-                    --self.level.enemies[enemy].side = 2 
-                    --print("enemy side:", self.level.enemies[enemy].side)
-                --elseif self.level.enemies[enemy].side == 2 then
-                    --print("shouldn't be here")
-                    --self.level.enemies[enemy].side = 1
-                --end
             end
         end
     end
---[[
-    if self.arrow_button:collides(self.redBlob) or self.arrow_button:collides(self.blueBlob) then
-        if not self.arrow_button.pressed_sound_played then
-            gSounds['button_push']:play()
-            self.arrow_button.pressed_sound_played = true
-        end
-        self.arrow_button.arrow_button_pressed = true
-    
-        gStateMachine:change('simon_says', {
-            redBlob = self.redBlob,
-            blueBlob = self.blueBlob,
-            enemies = self.enemies,
-            tiles = self.tiles,
-            portal = self.portal,
-            pressure_button = self.pressure_button,
-            arrow_button = self.arrow_button,
-            chest_key = self.chest_key,
-            health = self.health,
-            rope = self.rope
-        })
-    end
-]]
+
     --  check to see if the level is over
     --  check if all enemies are dead
     local is_over = true
@@ -165,7 +136,7 @@ function PlayState:update(dt)
             is_over = false
         end
     end
-    --  Check that all chested have been over
+    --  Check that all chests have been opened
     for x in pairs(self.level.chest_keys) do
         if not self.level.chest_keys[x]:isOpened() then
             is_over = false
@@ -280,10 +251,14 @@ function PlayState:enter(params)
     self.redBlob.x = VIRTUAL_WIDTH / 2 - 40 
     self.redBlob.sx = 0.4
     self.redBlob.sy = 0.4 
-    self.rope = Rope({
-        blueBlob = self.blueBlob,
-        redBlob = self.redBlob
-    })
+    if params.lastState == 'transition' then
+        self.rope = params.rope
+    else
+        self.rope = Rope({
+            blueBlob = self.blueBlob,
+            redBlob = self.redBlob
+        })
+    end
 
     self.health = params.health
     

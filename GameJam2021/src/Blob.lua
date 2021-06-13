@@ -1,4 +1,4 @@
-Blob = Class{__includes = Entity}
+Blob = Class{}
 
 function Blob:init(params)
     self.x = params.x

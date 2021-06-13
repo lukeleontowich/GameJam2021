@@ -16,8 +16,6 @@ require 'src/Key'
 require 'src/Button'
 require 'src/Arrow'
 require 'src/PressureButton'
-require 'src/Level'
-require 'src/Levels'
 
 -- game states
 require 'src/states/BaseState'
