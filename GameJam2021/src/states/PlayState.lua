@@ -239,7 +239,7 @@ function PlayState:render()
         love.graphics.draw(gTextures['instruction_background'], 
         VIRTUAL_WIDTH / 2 - (gTextures['instruction_background']:getWidth() / 2),
         VIRTUAL_HEIGHT / 2 - (gTextures['instruction_background']:getHeight() / 2))
-        love.graphics.setFont(gFonts['Title'])
+        love.graphics.setFont(gFonts['title'])
         love.graphics.setColor(0.0, 0.0, 0.0, 1.0)
         love.graphics.printf("YOU WIN!",  1, VIRTUAL_HEIGHT / 2 - 50 + 1, VIRTUAL_WIDTH, 'center')
         love.graphics.setColor(1.0, 1.0, 1.0, 1.0)
