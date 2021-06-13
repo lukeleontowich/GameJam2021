@@ -1,3 +1,8 @@
+
+
+--------------------------------------------------------------------------
+
+
 PlayState = Class{__includes = BaseState}
 
 
@@ -169,7 +174,9 @@ function PlayState:render()
     if not self.chest_key:isOpened() then
         self.chest_key.key:render()
     end
-    for x in pairs(self.enemies) do
+    local index = 0
+
+    for x in pairs(self.levels.enemies) do
         self.enemies[x]:render()
     end
 end
@@ -188,7 +195,7 @@ function PlayState:enter(params)
         redBlob = self.redBlob
     })
 
-    self.level = Level{
+    self.levels = {
         chest_keys = {
             ChestKey({
                 chest = Chest({x = VIRTUAL_WIDTH / 4, y = VIRTUAL_HEIGHT / 4}),
@@ -211,9 +218,9 @@ function PlayState:enter(params)
             Button({x = 30,y = VIRTUAL_HEIGHT - 14,type = 2})
         },
         enemies = {
-            Enemy({x = 5, y = 50, color = 1, redBlob = red, blueBlob = blue}),
-            Enemy({x = 30, y = 50, color = 2, redBlob = red, blueBlob = blue})
+            Enemy({x = 5, y = 50, color = 1, redBlob = self.redBlob, blueBlob = self.blueBlob}),
+            Enemy({x = 30, y = 50, color = 2, redBlob = self.redBlob, blueBlob = self.blueBlob})
         }
     }
-    self.enemies = level.enemies
+    self.enemies = self.levels.enemies
 end
