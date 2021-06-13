@@ -385,6 +385,7 @@ function PlayState:nextLevel()
     end
 end
 
+
 function PlayState:loseHeart()
     gStateMachine:change('transition', {
         redBlob = self.redBlob,
