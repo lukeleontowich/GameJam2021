@@ -3,20 +3,15 @@ PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
     self.tiles = LevelMaker.generate(VIRTUAL_WIDTH, VIRTUAL_HEIGHT) 
-    self.portal = Portal({
-        left_x = 20,
-        left_y = 20,
-        right_x = VIRTUAL_WIDTH - 40,
-        right_y = 20
-    })
-
+--[[
     self.arrow_button = Button({
         x = 30,
         y = VIRTUAL_HEIGHT - 14,
         type = 2
     })
-
+]]
     self.health = 3
+    self.level_over = false
 end
 
 function PlayState:update(dt)
@@ -90,7 +85,7 @@ function PlayState:update(dt)
     --  See if the key is in the portal and if so send it
     --  There will be an error rn for muliple cchest_keys
     for x in pairs(self.level.chest_keys) do
-        if self.portal:collides(self.level.chest_keys[x].key) and not self.level.chest_keys[x].portaled then
+        if self.level.portal:collides(self.level.chest_keys[x].key) and not self.level.chest_keys[x].portaled then
             self.blueBlob.has_key = false
             self.redBlob.has_key = false
         end
@@ -99,7 +94,7 @@ function PlayState:update(dt)
     --  Check if an enemy is in a portal then send it
     for enemy in pairs(self.level.enemies) do
         if not self.level.enemies[enemy].portaled then 
-            if self.portal:collides(self.level.enemies[enemy]) then
+            if self.level.portal:collides(self.level.enemies[enemy]) then
                 self.level.enemies[enemy].portaled = true
                 self.level.enemies[enemy].timer = 0
                 if self.level.enemies[enemy].side == 1 then
@@ -113,7 +108,7 @@ function PlayState:update(dt)
             end
         end
     end
-
+--[[
     if self.arrow_button:collides(self.redBlob) or self.arrow_button:collides(self.blueBlob) then
         if not self.arrow_button.pressed_sound_played then
             gSounds['button_push']:play()
@@ -134,9 +129,39 @@ function PlayState:update(dt)
             rope = self.rope
         })
     end
-
+]]
+    --  check to see if the level is over
+    --  check if all enemies are dead
+    local is_over = true
+    for x in pairs(self.level.enemies) do 
+        if not self.level.enemies[x].isDead then
+            is_over = false
+        end
+    end
+    --  Check that all chested have been over
+    for x in pairs(self.level.chest_keys) do
+        if not self.level.chest_keys[x]:isOpened() then
+            is_over = false
+        end
+    end
+    --  Check that all pressure buttons are pressed
+    for x in pairs(self.level.pressure_buttons) do
+        if not self.level.pressure_buttons[x].hit then
+            is_over = false
+        end
+    end
+    if is_over then
+        self.level_over = true
+    end
+    if self.level_over then
+        self:nextLevel()
+    end
+            
 end
 
+---------------------------------------------------
+--  RENDER  ---------------------------------------
+---------------------------------------------------
 function PlayState:render()
     --  render backgrou9ns
     love.graphics.draw(gTextures['background'], 0, 0)
@@ -151,7 +176,8 @@ function PlayState:render()
         distance = distance - 9
     end
 
-    self.portal:render()
+    --  render portal
+    self.level.portal:render()
 
     --  render pressure buttons
     for x in pairs(self.level.pressure_buttons) do
@@ -159,7 +185,7 @@ function PlayState:render()
     end
 
 
-    self.arrow_button:render()
+    --self.arrow_button:render()
 
     --  render chests
     for x in pairs(self.level.chest_keys) do
@@ -178,6 +204,7 @@ function PlayState:render()
         end
     end
 
+    --  render enemies
     for x in pairs(self.level.enemies) do
         self.level.enemies[x]:render()
     end
@@ -196,22 +223,70 @@ function PlayState:enter(params)
         blueBlob = self.blueBlob,
         redBlob = self.redBlob
     })
-
-    self.level1 = {
+    
+    self.level0 = {
         chest_keys = {
             ChestKey({
                 chest = Chest({x = VIRTUAL_WIDTH / 4, y = VIRTUAL_HEIGHT / 4}),
                 key = Key({x = 3 * VIRTUAL_WIDTH / 4, y = 3 * VIRTUAL_HEIGHT / 4})
             })
         },
-        portals = {
-            Portal({
+        portal = Portal({
                 left_x = 20,
                 left_y = 20,
                 right_x = VIRTUAL_WIDTH - 40,
                 right_y = 20
+        }),
+        pressure_buttons = {},
+        buttons = {},
+        enemies = {}
+    }
+
+    self.level1 = {
+        chest_keys = {},
+        portal = Portal({
+            left_x = -100,
+            left_y = -100,
+            right_x = -100,
+            right_y = -100
+    }),
+        pressure_buttons = {
+            PressureButton({y = 20, side = 1}),
+            PressureButton({y = 50, side = 2})
+        },
+        buttons = {},
+        enemies = {}
+    }
+
+    self.level2 = {
+        chest_keys = {},
+        portal = Portal({
+                left_x = 20,
+                left_y = 20,
+                right_x = VIRTUAL_WIDTH - 40,
+                right_y = 20
+        }),
+        pressure_buttons = {},
+        buttons = {},
+        enemies = {
+            Enemy({x = 5, y = 50, color = 1, redBlob = self.redBlob, blueBlob = self.blueBlob}),
+            Enemy({x = 30, y = 50, color = 2, redBlob = self.redBlob, blueBlob = self.blueBlob})
+        }
+    }
+
+    self.level3 = {
+        chest_keys = {
+            ChestKey({
+                chest = Chest({x = VIRTUAL_WIDTH / 4, y = VIRTUAL_HEIGHT / 4}),
+                key = Key({x = 3 * VIRTUAL_WIDTH / 4, y = 3 * VIRTUAL_HEIGHT / 4})
             })
         },
+        portal = Portal({
+                left_x = 20,
+                left_y = 20,
+                right_x = VIRTUAL_WIDTH - 40,
+                right_y = 20
+        }),
         pressure_buttons = {
             PressureButton({y = 20, side = 1}),
             PressureButton({y = 50, side = 2})
@@ -222,10 +297,108 @@ function PlayState:enter(params)
         enemies = {
             Enemy({x = 5, y = 50, color = 1, redBlob = self.redBlob, blueBlob = self.blueBlob}),
             Enemy({x = 30, y = 50, color = 2, redBlob = self.redBlob, blueBlob = self.blueBlob})
-        },
-        simon_says = {}
+        }
     }
 
-    self.level = self.level1
+    self.level4 = {
+        chest_keys = {
+            ChestKey({
+                chest = Chest({x = 20, y = VIRTUAL_HEIGHT - 30}),
+                key = Key({x = VIRTUAL_WIDTH - 20, y = 50})
+            })
+        },
+        portal = Portal({
+                left_x = 20,
+                left_y = 20,
+                right_x = VIRTUAL_WIDTH - 40,
+                right_y = 20
+        }),
+        pressure_buttons = {
+            PressureButton({y = 20, side = 1})
+        },
+        buttons = {},
+        enemies = {
+            Enemy({x = 5, y = 50, color = 1, redBlob = self.redBlob, blueBlob = self.blueBlob}),
+            Enemy({x = 30, y = 50, color = 2, redBlob = self.redBlob, blueBlob = self.blueBlob}),
+            Enemy({x = VIRTUAL_WIDTH - 20, y = VIRTUAL_HEIGHT - 40, color = 1, 
+                   redBlob = self.redBlob, blueBlob = self.blueBlob})
+        }
+    }
+
+    self.level5 = {
+        chest_keys = {
+            ChestKey({
+                chest = Chest({x = 50, y = 100}),
+                key = Key({x = 190, y = 25})
+            })
+        },
+        portal = Portal({
+                left_x = 50,
+                left_y = 30,
+                right_x = 190,
+                right_y = 120
+        }),
+        pressure_buttons = {
+            PressureButton({y = 40, side = 1}),
+            PressureButton({y = 60, side = 2}),
+            PressureButton({y = 100, side = 1})
+        },
+        buttons = {},
+        enemies = {
+            Enemy({x = 10, y = 130, color = 2, redBlob = self.redBlob, blueBlob = self.blueBlob}),
+            Enemy({x = 30, y = 130, color = 2, redBlob = self.redBlob, blueBlob = self.blueBlob}),
+            Enemy({x = 50, y = 130, color = 2, redBlob = self.redBlob, blueBlob = self.blueBlob}),
+            Enemy({x = 160, y = 30, color = 1, redBlob = self.redBlob, blueBlob = self.blueBlob}),
+            Enemy({x = 160, y = 30, color = 1, redBlob = self.redBlob, blueBlob = self.blueBlob}),
+            Enemy({x = 160, y = 30, color = 1, redBlob = self.redBlob, blueBlob = self.blueBlob})
+        }
+    }
+    
+    
+
+    self.level = self.level0
+    self.level_cntr = 0
     --self.enemies = self.levels.enemies
+
+end
+
+function PlayState:nextLevel()
+    print("cntr: ", self.level_cntr)
+    if self.level_cntr == 0 then
+        if love.keyboard.isDown('return') then
+            self.level = self.level1
+            self.level_cntr = self.level_cntr + 1
+            self.health = 3
+            self.level_over = false
+        end
+    elseif self.level_cntr == 1 then
+        if love.keyboard.isDown('return') then
+            self.level = self.level2
+            self.level_cntr = self.level_cntr + 1
+            self.health = 3
+            self.level_over = false
+        end
+    elseif self.level_cntr == 2 then
+        if love.keyboard.isDown('return') then
+            self.level = self.level3
+            self.level_cntr = self.level_cntr + 1
+            self.health = 3
+            self.level_over = false
+        end
+    elseif self.level_cntr == 3 then
+        if love.keyboard.isDown('return') then
+            self.level = self.level4
+            self.level_cntr = self.level_cntr + 1
+            self.health = 3
+            self.level_over = false
+        end
+    elseif self.level_cntr == 4 then
+        if love.keyboard.isDown('return') then
+            self.level = self.level5
+            self.level_cntr = self.level_cntr + 1
+            self.health = 3
+            self.level_over = false
+        end
+    end
+
 end
