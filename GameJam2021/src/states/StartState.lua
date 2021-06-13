@@ -35,7 +35,8 @@ function StartState:update(dt)
         if highlighted == 1 then
             gStateMachine:change('play', {
                 redBlob = self.redBlob,
-                blueBlob = self.blueBlob
+                blueBlob = self.blueBlob,
+                health = 3
             }) 
         else
             gStateMachine:change('instruction') 

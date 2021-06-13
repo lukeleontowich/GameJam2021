@@ -41,9 +41,7 @@ function GameOverState:render()
         distance = distance - 9
     end
     self.level.portal:render()
-    self.pressure_button:render()
-    self.arrow_button:render()
-    self.chest_key.chest:render() 
+
     self.rope:render()
     self.redBlob:render()
     self.blueBlob:render()

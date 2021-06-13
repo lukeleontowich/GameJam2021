@@ -11,7 +11,6 @@ function PlayState:init()
         type = 2
     })
 ]]
-    self.health = 3
     self.level_over = false
 end
 
@@ -227,6 +226,8 @@ function PlayState:enter(params)
         blueBlob = self.blueBlob,
         redBlob = self.redBlob
     })
+
+    self.health = params.health
     
     self.levels = {
     --[[self.level0 = ]]{
