@@ -4,13 +4,6 @@ PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
     self.tiles = LevelMaker.generateTiles(VIRTUAL_WIDTH, VIRTUAL_HEIGHT) 
---[[
-    self.arrow_button = Button({
-        x = 30,
-        y = VIRTUAL_HEIGHT - 14,
-        type = 2
-    })
-]]
     self.level_over = false
     self.game_over = false
     self.level_timer = 0
@@ -47,34 +40,9 @@ function PlayState:update(dt)
     end
 
     --check for enemy collisions
+    self:enemyCollision(self.redBlob)
+    self:enemyCollision(self.blueBlob)
     for enemy in pairs(self.level.enemies) do
-        if self.level.enemies[enemy]:collides(self.redBlob) and not self.level.enemies[enemy].isDead then
-            gSounds['enemy_death']:play()
-            self.level.enemies[enemy].isDead = true
-            self.level.enemies[enemy].timer = 0
-        elseif self.level.enemies[enemy]:hurt(self.redBlob) then
-            gSounds['hurt']:play()
-            self:loseHeart()
-            for s in pairs(self.level.enemies) do
-                self.level.enemies[s].x = self.level.enemies[s].originalX
-                self.level.enemies[s].y = self.level.enemies[s].originalY
-            end
-        end
-    end
-
-    for enemy in pairs(self.level.enemies) do
-        if self.level.enemies[enemy]:collides(self.blueBlob) and not self.level.enemies[enemy].isDead then
-            gSounds['enemy_death']:play()
-            self.level.enemies[enemy].isDead = true
-            self.level.enemies[enemy].timer = 0
-        elseif self.level.enemies[enemy]:hurt(self.blueBlob) then
-            gSounds['hurt']:play()
-            self:loseHeart()
-            for s in pairs(self.level.enemies) do
-                self.level.enemies[s].x = self.level.enemies[s].originalX
-                self.level.enemies[s].y = self.level.enemies[s].originalY
-            end
-        end
         if not self.level.enemies[enemy].exists then
             table.remove(self.level.enemies, enemy)
         end
@@ -123,26 +91,7 @@ function PlayState:update(dt)
     end
 
     --  check to see if the level is over
-    --  check if all enemies are dead
-    local is_over = true
-    for x in pairs(self.level.enemies) do 
-        if not self.level.enemies[x].isDead then
-            is_over = false
-        end
-    end
-    --  Check that all chests have been opened
-    for x in pairs(self.level.chest_keys) do
-        if not self.level.chest_keys[x]:isOpened() then
-            is_over = false
-        end
-    end
-    --  Check that all pressure buttons are pressed
-    for x in pairs(self.level.pressure_buttons) do
-        if not self.level.pressure_buttons[x].hit then
-            is_over = false
-        end
-    end
-    if is_over then
+    if self:levelIsOver() then
         self.level_over = true
     end
     if self.level_over then
@@ -297,4 +246,43 @@ function PlayState:loseHeart()
         level_cntr = self.level_cntr,
         lastState = 'play'
     })
+end
+
+function PlayState:levelIsOver()
+    --  check if all enemies are dead
+    for x in pairs(self.level.enemies) do 
+        if not self.level.enemies[x].isDead then
+            return false
+        end
+    end
+    --  Check that all chests have been opened
+    for x in pairs(self.level.chest_keys) do
+        if not self.level.chest_keys[x]:isOpened() then
+            return false
+        end
+    end
+    --  Check that all pressure buttons are pressed
+    for x in pairs(self.level.pressure_buttons) do
+        if not self.level.pressure_buttons[x].hit then
+            return false
+        end
+    end
+    return true
+end
+
+function PlayState:enemyCollision(target)
+    for enemy in pairs(self.level.enemies) do
+        if self.level.enemies[enemy]:collides(target) and not self.level.enemies[enemy].isDead then
+            gSounds['enemy_death']:play()
+            self.level.enemies[enemy].isDead = true
+            self.level.enemies[enemy].timer = 0
+        elseif self.level.enemies[enemy]:hurt(target) then
+            gSounds['hurt']:play()
+            self:loseHeart()
+            for s in pairs(self.level.enemies) do
+                self.level.enemies[s].x = self.level.enemies[s].originalX
+                self.level.enemies[s].y = self.level.enemies[s].originalY
+            end
+        end
+    end
 end
