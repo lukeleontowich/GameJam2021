@@ -224,6 +224,10 @@ function PlayState:enter(params)
         self.level_cntr = 1
     end
     --self.enemies = self.levels.enemies
+    if params.lastState == 'game_over' then
+        self.rope = params.rope
+    end
+
 
 end
 

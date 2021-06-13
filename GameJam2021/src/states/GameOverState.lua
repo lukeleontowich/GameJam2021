@@ -25,7 +25,8 @@ function GameOverState:update(dt)
             tiles = self.tiles,
             level = self.level,
             health = self.health,
-            rope = self.rope
+            rope = self.rope,
+            lastState = 'game_over'
         })
     end
 end
