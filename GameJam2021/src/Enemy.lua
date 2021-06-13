@@ -3,6 +3,8 @@ Enemy = Class{}
 function Enemy:init(params)
     self.x = params.x
     self.y = params.y
+    self.originalX = self.x
+    self.originalY = self.y
     self.color = params.color
 
     self.dx = 0.1
@@ -107,6 +109,7 @@ function Enemy:render()
         end
     else
         if self.isDead then
+            love.graphics.draw(gTextures['blue_enemy_dead'], self.x, self.y)
         else
             if self.currentAnimation == 1 then
                 love.graphics.draw(gTextures['blue_enemy_left'], self.x, self.y, 0, self.sx, self.sy)
@@ -126,6 +129,7 @@ function Enemy:collides(target)
 end
 
 function Enemy:hurt(target)
-    return not (target.x > self.x + self.width or self.x > target.x + target.width or
-            target.y > self.y + self.height or self.y > target.y + target.height)
+    return (not (target.x > self.x + self.width or self.x > target.x + target.width or
+            target.y > self.y + self.height or self.y > target.y + target.height)) and
+            (not target.color == self.color)
 end

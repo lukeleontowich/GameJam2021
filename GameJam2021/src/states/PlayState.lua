@@ -49,6 +49,10 @@ function PlayState:update(dt)
         elseif self.level.enemies[enemy]:hurt(self.redBlob) then
             gSounds['hurt']:play()
             self:loseHeart()
+            for s in pairs(self.level.enemies) do
+                self.level.enemies[s].x = self.level.enemies[s].originalX
+                self.level.enemies[s].y = self.level.enemies[s].originalY
+            end
         end
     end
 
@@ -60,6 +64,10 @@ function PlayState:update(dt)
         elseif self.level.enemies[enemy]:hurt(self.blueBlob) then
             gSounds['hurt']:play()
             self:loseHeart()
+            for s in pairs(self.level.enemies) do
+                self.level.enemies[s].x = self.level.enemies[s].originalX
+                self.level.enemies[s].y = self.level.enemies[s].originalY
+            end
         end
         if not self.level.enemies[enemy].exists then
             table.remove(self.level.enemies, enemy)
@@ -231,7 +239,7 @@ function PlayState:render()
         love.graphics.draw(gTextures['instruction_background'], 
         VIRTUAL_WIDTH / 2 - (gTextures['instruction_background']:getWidth() / 2),
         VIRTUAL_HEIGHT / 2 - (gTextures['instruction_background']:getHeight() / 2))
-        love.graphics.setFont(gFonts['small'])
+        love.graphics.setFont(gFonts['Title'])
         love.graphics.setColor(0.0, 0.0, 0.0, 1.0)
         love.graphics.printf("YOU WIN!",  1, VIRTUAL_HEIGHT / 2 - 50 + 1, VIRTUAL_WIDTH, 'center')
         love.graphics.setColor(1.0, 1.0, 1.0, 1.0)

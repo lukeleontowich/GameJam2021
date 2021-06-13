@@ -55,6 +55,7 @@ gTextures = {
     ['blue_enemy_still'] = love.graphics.newImage('graphics/Blue_Enemy_Still.png'),
     ['blue_enemy_left'] = love.graphics.newImage('graphics/Blue_Enemy_Left.png'),
     ['blue_enemy_right'] = love.graphics.newImage('graphics/Blue_Enemy_Right.png'),
+    ['blue_enemy_dead'] = love.graphics.newImage('graphics/Blue_Enemy_Dead.png'),
     ['key'] = love.graphics.newImage('graphics/Key.png'),
     ['chest'] = love.graphics.newImage('graphics/Chest.png'),
     ['chest_open'] = love.graphics.newImage('graphics/Chest_Open.png'),
