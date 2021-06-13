@@ -40,10 +40,16 @@ function Enemy:init(params)
 end
 
 function Enemy:update(dt)
+    if self.x < VIRTUAL_WIDTH / 2 then
+        self.side = 1
+    else
+        self.side = 2
+    end
+
     self.timer = self.timer + dt
     self.portalTimer = self.portalTimer + dt
 
-    if self.portalTimer > 5 then 
+    if self.portalTimer > 10 then 
         self.portaled = false
         self.portalTimer = 0
     end
@@ -131,5 +137,5 @@ end
 function Enemy:hurt(target)
     return (not (target.x > self.x + self.width or self.x > target.x + target.width or
             target.y > self.y + self.height or self.y > target.y + target.height)) and
-            (not target.color == self.color)
+            not (target.color == self.color)
 end

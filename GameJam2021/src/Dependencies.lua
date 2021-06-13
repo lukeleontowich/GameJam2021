@@ -30,7 +30,6 @@ require 'src/states/TransitionState'
 require 'src/states/GameOverState'
 
 require 'src/LevelMaker'
-require 'src/EnemySpawner'
 
 gFonts = {
     ['title'] = love.graphics.newFont('fonts/Title.ttf', 32),
