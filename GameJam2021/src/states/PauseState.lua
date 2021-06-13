@@ -11,6 +11,7 @@ function PauseState:enter(params)
     self.health = params.health
     self.level = params.level
     self.level_cntr = params.level_cntr
+    self.rope = params.rope
 end
 
 function PauseState:render() 

@@ -251,7 +251,7 @@ function PlayState:enter(params)
     self.redBlob.x = VIRTUAL_WIDTH / 2 - 40 
     self.redBlob.sx = 0.4
     self.redBlob.sy = 0.4 
-    if params.lastState == 'transition' then
+    if params.lastState == 'transition' or params.lastState == 'pause' then
         self.rope = params.rope
     else
         self.rope = Rope({
