@@ -32,7 +32,8 @@ require 'src/LevelMaker'
 gFonts = {
     ['title'] = love.graphics.newFont('fonts/Title.ttf', 32),
     ['menu'] = love.graphics.newFont('fonts/Title.ttf', 12),
-    ['small'] = love.graphics.newFont('fonts/arial.ttf', 10)
+    ['small'] = love.graphics.newFont('fonts/arial.ttf', 7),
+    ['medium'] = love.graphics.newFont('fonts/arial.ttf', 10)
 }
 
 gTextures = {
