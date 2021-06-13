@@ -183,7 +183,7 @@ function PlayState:render()
     
     --  diplay timers
      -- Print a counter clock
-  love.graphics.setFont(gFonts['small'])
+  love.graphics.setFont(gFonts['medium'])
   local timer_display = 'Time: ' .. math.floor(self.level_timer)
   love.graphics.printf(timer_display, 1, 1, 100, 'left')
 end
