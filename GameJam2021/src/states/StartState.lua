@@ -4,12 +4,12 @@ local highlighted = 1
 
 function StartState:init()
     self.blueBlob = Blob({
-        x = (VIRTUAL_WIDTH / 2) - 48, 
+        x = (VIRTUAL_WIDTH / 2) + 16, 
         y = VIRTUAL_HEIGHT - 40,
         color = 2
     })
     self.redBlob = Blob({
-        x = (VIRTUAL_WIDTH / 2) + 16, 
+        x = (VIRTUAL_WIDTH / 2) - 48, 
         y = VIRTUAL_HEIGHT - 40,
         color = 1
     })
