@@ -414,6 +414,7 @@ function PlayState:loseHeart()
         tiles = self.tiles,
         health = self.health - 1,
         rope = self.rope,
+        level = self.level,
         lastState = 'play'
     })
 end
