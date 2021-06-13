@@ -230,6 +230,11 @@ end
 function PlayState:nextLevel()
     if love.keyboard.isDown('return') then
         self.level_timer = 0
+        --  resest blob positions
+        self.blueBlob.x = VIRTUAL_WIDTH / 2 + 16
+        self.blueBlob.y = VIRTUAL_HEIGHT / 2
+        self.redBlob.x = VIRTUAL_WIDTH /2 - 48
+        self.blueBlob.y = VIRTUAL_HEIGHT / 2
         if self.level_cntr >= #self.levels then
             self.game_over = true
         else
