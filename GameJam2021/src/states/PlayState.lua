@@ -387,10 +387,10 @@ function PlayState:enter(params)
     }}
     
     
-    if params.level == nil then
-        self.level = self.levels[1]
-    else
+    if params.lastState == 'transition' then
         self.level = params.level
+    else
+        self.level = self.levels[1]
     end
     self.level_cntr = 1
     --self.enemies = self.levels.enemies
