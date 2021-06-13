@@ -220,11 +220,11 @@ function PlayState:render()
         love.graphics.draw(gTextures['instruction_background'], 
         VIRTUAL_WIDTH / 2 - (gTextures['instruction_background']:getWidth() / 2),
         VIRTUAL_HEIGHT / 2 - (gTextures['instruction_background']:getHeight() / 2))
-        love.graphics.setFont(gFonts['small'])
+        love.graphics.setFont(gFonts['title'])
         love.graphics.setColor(0.0, 0.0, 0.0, 1.0)
         love.graphics.printf("LEVEL COMPLETE!",  1, VIRTUAL_HEIGHT / 2 - 50 + 1, VIRTUAL_WIDTH, 'center')
         love.graphics.printf('PRESS ENTER TO CONTINUE', 
-                            1, VIRTUAL_HEIGHT / 2 - 40 + 1, VIRTUAL_WIDTH, 'center')
+                            1, VIRTUAL_HEIGHT / 2 - 20 + 1, VIRTUAL_WIDTH, 'center')
         love.graphics.setColor(1.0, 1.0, 1.0, 1.0)
     end
     if self.game_over then
@@ -387,8 +387,11 @@ function PlayState:enter(params)
     }}
     
     
-
-    self.level = self.levels[1]
+    if params.level == nil then
+        self.level = self.levels[1]
+    else
+        self.level = params.level
+    end
     self.level_cntr = 1
     --self.enemies = self.levels.enemies
 
