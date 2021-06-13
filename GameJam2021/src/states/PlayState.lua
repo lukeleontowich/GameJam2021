@@ -360,8 +360,11 @@ function PlayState:enter(params)
     }}
     
     
-
-    self.level = self.levels[1]
+    if params.lastState == 'transition' then
+        self.level = params.level
+    else
+        self.level = self.levels[1]
+    end
     self.level_cntr = 1
     --self.enemies = self.levels.enemies
 
@@ -380,10 +383,6 @@ function PlayState:nextLevel()
             self.redBlob.has_key = false
         end
     end
-<<<<<<< HEAD
-end
-=======
-
 end
 
 function PlayState:loseHeart()
@@ -398,4 +397,3 @@ function PlayState:loseHeart()
         lastState = 'play'
     })
 end
->>>>>>> c5000831db86b7153c9bae67b0ac6da61770a64e

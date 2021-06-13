@@ -8,10 +8,7 @@ function GameOverState:enter(params)
     self.blueBlob = params.blueBlob
     self.enemies = params.enemies
     self.tiles = params.tiles
-    self.portal = params.portal
-    self.pressure_button = params.portal
-    self.arrow_button = params.arrow_button
-    self.chest_key = params.chest_key
+    self.level = params.level
     self.health = params.health
     self.rope = params.rope
 end
@@ -19,6 +16,17 @@ end
 function GameOverState:update(dt)
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
+    end
+    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+        gStateMachine:change('play', {
+            redBlob = self.redBlob,
+            blueBlob = self.blueBlob,
+            enemies = self.enemies,
+            tiles = self.tiles,
+            level = self.level,
+            health = self.health,
+            rope = self.rope
+        })
     end
 end
 
@@ -32,18 +40,22 @@ function GameOverState:render()
         love.graphics.draw(gTextures['heart'], distance, 0)
         distance = distance - 9
     end
-    self.portal:render()
+    self.level.portal:render()
     self.pressure_button:render()
     self.arrow_button:render()
     self.chest_key.chest:render() 
     self.rope:render()
     self.redBlob:render()
     self.blueBlob:render()
-    if not self.chest_key:isOpened() then
-        self.chest_key.key:render()
+    for x in pairs(self.level.chest_keys) do 
+        if not self.level.chest_keys[x]:isOpened() then
+            self.level.chest_keys[x].key:render()
+        end
     end
-    for x in pairs(self.enemies) do
-        self.enemies[x]:render()
+
+    --  render enemies
+    for x in pairs(self.level.enemies) do
+        self.level.enemies[x]:render()
     end
 
     love.graphics.setFont(gFonts['title'])

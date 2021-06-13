@@ -41,7 +41,8 @@ function TransitionState:update(dt)
                 tiles = self.tiles,
                 health = self.health,
                 level = self.level,
-                rope = self.rope
+                rope = self.rope,
+                lastState = 'transition'
             })
         end
     end
@@ -75,8 +76,8 @@ function TransitionState:render()
 
     if self.health > 0 then
         love.graphics.setFont(gFonts['title'])
-        love.graphics.setColor(0.1, 1.0, 0.1, 1.0)
-        love.graphics.printf('%i lives left', self.health, VIRTUAL_HEIGHT / 2 - 40 + 1, VIRTUAL_WIDTH, 'center')
+        love.graphics.setColor(1, 0.1, 0.1, 1.0)
+        love.graphics.printf('Lost A Life', 1, VIRTUAL_HEIGHT / 2 - 40 + 1, VIRTUAL_WIDTH, 'center')
         love.graphics.setColor(1, 1, 1, 1)
     else
         gStateMachine:change('game_over', {
@@ -84,6 +85,7 @@ function TransitionState:render()
             blueBlob = self.blueBlob,
             enemies = self.enemies,
             tiles = self.tiles,
+            level = self.level,
             health = self.health,
             rope = self.rope
         })
