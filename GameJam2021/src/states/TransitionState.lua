@@ -11,6 +11,7 @@ function TransitionState:enter(params)
     self.health = params.health
     self.rope = params.rope
     self.level = params.level
+    self.level_cntr = params.level_cntr
     self.lastState = params.lastState
 end
 
@@ -42,6 +43,7 @@ function TransitionState:update(dt)
                 health = self.health,
                 level = self.level,
                 rope = self.rope,
+                level_cntr = self.level_cntr,
                 lastState = 'transition'
             })
         end
