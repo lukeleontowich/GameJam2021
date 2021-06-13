@@ -1,6 +1,7 @@
 PlayState = Class{__includes = BaseState}
 
 
+
 function PlayState:init()
     self.tiles = LevelMaker.generate(VIRTUAL_WIDTH, VIRTUAL_HEIGHT) 
 --[[
@@ -372,48 +373,8 @@ function PlayState:nextLevel()
             self.health = 3
             self.level_over = false
             self.level = self.levels[self.level_cntr]
+            self.blueBlob.has_key = false
+            self.redBlob.has_key = false
         end
     end
 end
---[[
-
-    print("cntr: ", self.level_cntr)
-    if self.level_cntr == 0 then
-        if love.keyboard.isDown('return') then
-            self.level = self.level1
-            self.level_cntr = self.level_cntr + 1
-            self.health = 3
-            self.level_over = false
-        end
-    elseif self.level_cntr == 1 then
-        if love.keyboard.isDown('return') then
-            self.level = self.level2
-            self.level_cntr = self.level_cntr + 1
-            self.health = 3
-            self.level_over = false
-        end
-    elseif self.level_cntr == 2 then
-        if love.keyboard.isDown('return') then
-            self.level = self.level3
-            self.level_cntr = self.level_cntr + 1
-            self.health = 3
-            self.level_over = false
-        end
-    elseif self.level_cntr == 3 then
-        if love.keyboard.isDown('return') then
-            self.level = self.level4
-            self.level_cntr = self.level_cntr + 1
-            self.health = 3
-            self.level_over = false
-        end
-    elseif self.level_cntr == 4 then
-        if love.keyboard.isDown('return') then
-            self.level = self.level5
-            self.level_cntr = self.level_cntr + 1
-            self.health = 3
-            self.level_over = false
-        end
-    end
-
-end
-]]
