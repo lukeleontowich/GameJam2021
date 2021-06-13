@@ -1,6 +1,7 @@
 PlayState = Class{__includes = BaseState}
 
 
+
 function PlayState:init()
     self.tiles = LevelMaker.generate(VIRTUAL_WIDTH, VIRTUAL_HEIGHT) 
 --[[
@@ -227,7 +228,8 @@ function PlayState:enter(params)
         redBlob = self.redBlob
     })
     
-    self.level0 = {
+    self.levels = {
+    --[[self.level0 = ]]{
         chest_keys = {
             ChestKey({
                 chest = Chest({x = VIRTUAL_WIDTH / 4, y = VIRTUAL_HEIGHT / 4}),
@@ -243,9 +245,9 @@ function PlayState:enter(params)
         pressure_buttons = {},
         buttons = {},
         enemies = {}
-    }
+    },
 
-    self.level1 = {
+    --[[self.level1 = ]]{
         chest_keys = {},
         portal = Portal({
             left_x = -100,
@@ -259,9 +261,9 @@ function PlayState:enter(params)
         },
         buttons = {},
         enemies = {}
-    }
+    },
 
-    self.level2 = {
+    --[[self.level2 = ]]{
         chest_keys = {},
         portal = Portal({
                 left_x = 20,
@@ -275,9 +277,9 @@ function PlayState:enter(params)
             Enemy({x = 5, y = 50, color = 1, redBlob = self.redBlob, blueBlob = self.blueBlob}),
             Enemy({x = 30, y = 50, color = 2, redBlob = self.redBlob, blueBlob = self.blueBlob})
         }
-    }
+    },
 
-    self.level3 = {
+    --[[self.level3 = ]]{
         chest_keys = {
             ChestKey({
                 chest = Chest({x = VIRTUAL_WIDTH / 4, y = VIRTUAL_HEIGHT / 4}),
@@ -301,9 +303,9 @@ function PlayState:enter(params)
             Enemy({x = 5, y = 50, color = 1, redBlob = self.redBlob, blueBlob = self.blueBlob}),
             Enemy({x = 30, y = 50, color = 2, redBlob = self.redBlob, blueBlob = self.blueBlob})
         }
-    }
+    },
 
-    self.level4 = {
+    --[[self.level4 = ]]{
         chest_keys = {
             ChestKey({
                 chest = Chest({x = 20, y = VIRTUAL_HEIGHT - 30}),
@@ -326,9 +328,9 @@ function PlayState:enter(params)
             Enemy({x = VIRTUAL_WIDTH - 20, y = VIRTUAL_HEIGHT - 40, color = 1, 
                    redBlob = self.redBlob, blueBlob = self.blueBlob})
         }
-    }
+    },
 
-    self.level5 = {
+    --[[self.level5 = ]]{
         chest_keys = {
             ChestKey({
                 chest = Chest({x = 50, y = 100}),
@@ -355,54 +357,32 @@ function PlayState:enter(params)
             Enemy({x = 160, y = 30, color = 1, redBlob = self.redBlob, blueBlob = self.blueBlob}),
             Enemy({x = 160, y = 30, color = 1, redBlob = self.redBlob, blueBlob = self.blueBlob})
         }
-    }
+    }}
     
     
 
-    self.level = self.level0
-    self.level_cntr = 0
+    self.level = self.levels[1]
+    self.level_cntr = 1
     --self.enemies = self.levels.enemies
 
 end
 
 function PlayState:nextLevel()
-    print("cntr: ", self.level_cntr)
-    if self.level_cntr == 0 then
-        if love.keyboard.isDown('return') then
-            self.level = self.level1
+    if love.keyboard.isDown('return') then
+        if self.level_cntr >= #self.levels then
+            print("GAME OVER")
+        else
             self.level_cntr = self.level_cntr + 1
             self.health = 3
             self.level_over = false
-        end
-    elseif self.level_cntr == 1 then
-        if love.keyboard.isDown('return') then
-            self.level = self.level2
-            self.level_cntr = self.level_cntr + 1
-            self.health = 3
-            self.level_over = false
-        end
-    elseif self.level_cntr == 2 then
-        if love.keyboard.isDown('return') then
-            self.level = self.level3
-            self.level_cntr = self.level_cntr + 1
-            self.health = 3
-            self.level_over = false
-        end
-    elseif self.level_cntr == 3 then
-        if love.keyboard.isDown('return') then
-            self.level = self.level4
-            self.level_cntr = self.level_cntr + 1
-            self.health = 3
-            self.level_over = false
-        end
-    elseif self.level_cntr == 4 then
-        if love.keyboard.isDown('return') then
-            self.level = self.level5
-            self.level_cntr = self.level_cntr + 1
-            self.health = 3
-            self.level_over = false
+            self.level = self.levels[self.level_cntr]
+            self.blueBlob.has_key = false
+            self.redBlob.has_key = false
         end
     end
+<<<<<<< HEAD
+end
+=======
 
 end
 
@@ -418,3 +398,4 @@ function PlayState:loseHeart()
         lastState = 'play'
     })
 end
+>>>>>>> c5000831db86b7153c9bae67b0ac6da61770a64e
